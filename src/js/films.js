@@ -26,7 +26,7 @@ trending.fetchFilms().then(
 // trending.fetchGenres().then(response =>
 //     console.log(response))
 
-async function filmer() {
+export async function filmer() {
   try {
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
@@ -41,7 +41,7 @@ async function filmer() {
   }
 }
 
-filmer();
+// filmer();
 
 function markUpGallery(filmsArr, genres) {
   console.log('filmsArr', filmsArr);
