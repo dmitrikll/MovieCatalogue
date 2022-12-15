@@ -9,15 +9,16 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 import throttle from 'lodash.throttle';
 
-const searchInput = document.querySelector('.search_input');
 const filmGallery = document.querySelector('.film-gallery');
 
-export default function infiniteScroll(page, per_page = 20) {
+export let scrollListener = null;
+
+export default function infiniteScroll(query, page, per_page = 20) {
   let triggered = false;
 
   window.addEventListener(
     'scroll',
-    throttle(async () => {
+    (scrollListener = throttle(async () => {
       const height = document.body.offsetHeight;
       const screenHeight = window.innerHeight;
       const scrolled = window.scrollY;
@@ -33,7 +34,7 @@ export default function infiniteScroll(page, per_page = 20) {
 
       //Place for spinner
 
-      const fetchedMovies = await fetchMovies(searchInput.value, page);
+      const fetchedMovies = await fetchMovies(query, page);
       const genres = await axios(
         `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
       );
@@ -53,6 +54,6 @@ export default function infiniteScroll(page, per_page = 20) {
       }
 
       triggered = false;
-    }, 300)
+    }, 300))
   );
 }
