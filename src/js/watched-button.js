@@ -21,3 +21,12 @@ function onWatchedMarkup() {
       return;
     }
 }
+
+function getActiveTab() {
+  const watchedButton = document.querySelector('.header_btn-watched');
+
+  return watchedButton.classList.contains('header-active-button')
+    ? 'watched'
+    : 'queue';
+}
+
