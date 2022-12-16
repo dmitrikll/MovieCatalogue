@@ -6,7 +6,7 @@ import axios from 'axios';
 export class TrendingFilmsApiService {
   constructor() {
     this.page = 1;
-    this.genres = this.fetchGenres();
+    // this.genres = this.fetchGenres();
   }
 
   async fetchFilms() {

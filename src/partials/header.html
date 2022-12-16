@@ -1,45 +1,34 @@
-<header class="header overlay" >
-
+<header class="header overlay-header" >
 <div class="section">
 <div class="container">
-    <nav class="nav">
-    <div class="nav_logo">
-        <object class="nav_logo_icon name="graph"
-        type="image/svg+xml" data="./images/header/svg/film.svg" width="100%" height="100%"></object>
-<span>
-    <h2 class="nav_title">Filmoteka</h2>
-</span>
-    </div>
-        <div class="nav_list ">
-            <button class="button nav_button nav_button--active">
-                Home
-            </button>
-            <button class="nav_button ">
-            my library
-            </button>
-        </div>
+    <nav class="navigation">
+<a class="navigation__logo" href="./index.html"> 
+    <svg class="navigation__logo_icon">
+        <use href="./images/svg/symbol-defs.svg#icon-film"></use>
+    </svg>
+<p class="navigation__title">Filmoteka</p>
+</a>
+    <ul class="navigation__list ">
+        <li class="navigation__list--item navigation_list--active"><a class="navigation__list--item--link" href="./index.html"> Home </a>
+</li>
+        <li class="navigation__list--item"><a class="navigation__list--item--link" href="./myLibrary.html"> My library</a>
+</li>
+    </ul>
+       
     </nav>
-
-
-
-
     <form class="search js-search__form">
         <label>
-            <input type="text" class="search_input" name="query" placeholder="Search films" />
+            <input type="text" class="search_input" name="query" placeholder="Search films">
         </label>
         <button type="submit" class="search_btn js-search_button">
-                    <object class="search_svg name="graph" type="image/svg+xml" data="./images/header/svg/search.svg"
-                        width="100%" height="100%"></object>
+            <svg class="search_svg"> 
+                <use href="./images/svg/symbol-defs.svg#icon-search"></use>
+            </svg>
         </button>
     </form>
 <p class="search_error hide">
 Search result not successful. Enter the correct movie name and
 </p>
-
 </div>
-
 </div>
-
-
-
 </header>

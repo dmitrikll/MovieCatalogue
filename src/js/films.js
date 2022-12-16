@@ -1,30 +1,35 @@
 import { BASE_URL } from './apiFilms/baseUrl';
-
+export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
 const trending = new TrendingFilmsApiService();
 
 const filmGallery = document.querySelector('.film-gallery');
-const btnRef = document.querySelector('.btn-lm');
-console.log(btnRef);
-btnRef.style.display = 'none';
-btnRef.addEventListener('click', onLoadMore);
-function onLoadMore() {
-  console.log('bgkjhghkgobject');
-  trending.incrementPage();
-  trending
-    .fetchFilms()
-    .then(response => console.log('response2', response))
-    .then(filmer);
-  //     .then(); //так чтоб в скобки зпсунуть функцию отрисовкм
-}
+const guard = document.querySelector('.guard-js');
 
-trending.fetchFilms().then(
-  response => console.log(response)
-  // filmGallery.innerHTML = markUpGallery(response.results)
+let ObserverOptions = {
+  root: null,
+  rootMargin: '500px',
+  threshold: 1.0,
+};
+
+export let observer = new IntersectionObserver(
+  observerFunction,
+  ObserverOptions
 );
-// trending.fetchGenres().then(response =>
-//     console.log(response))
+
+let page = trending.page;
+
+function observerFunction(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      trending.incrementPage();
+      filmer();
+      page += 1;
+      console.log(page);
+    }
+  });
+}
 
 export async function filmer() {
   try {
@@ -35,7 +40,8 @@ export async function filmer() {
     console.log('into filmer -genres', genres);
     // filmGallery.innerHTML = markUpGallery(films,genres)
     filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
-    btnRef.style.display = 'block';
+    observer.observe(guard);
+    // btnRef.style.display = 'block';
   } catch (err) {
     console.log(err);
   }
@@ -55,12 +61,12 @@ function markUpGallery(filmsArr, genres) {
         .filter(genre => genre_ids.includes(genre.id))
         .map(arr => arr.name);
 
-      return `<li class = "gallery-item">
-           <img class="gallery-image" src="${imgPath}" alt="${title}" loading="lazy"/>
-           <div class="info">
-            <p class="info-item">${title.toUpperCase()}</p>
-            <p class="info-item">${Object.values(
-              genresList
+      return `<li class = "film-gallery__item" data-id="${id}">
+           <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
+           <div class="film-gallery__info">
+            <p class="film-gallery__title">${title.toUpperCase()}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(
+              ', '
             )} | ${releaseYear}</p>
           </div>
           </li>`;
