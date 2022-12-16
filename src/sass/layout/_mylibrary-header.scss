@@ -1,3 +1,60 @@
+.myLibrary-header {
+    padding-top: 40px;
+    padding-bottom: 62px;
+    background-color: rgba(0, 0, 0, 0.56);;
+
+    background-image: url('../images/header/mylibrary-bg/watched-mob-bg@x1.png');
+    @include retina { 
+        background-image: url('../images/header/mylibrary-bg/watched-mob-bg@x2.png');
+    }
+
+    @include tab {
+        background-image: url('../images/header/mylibrary-bg/watched-tabl-bg@x1.png');
+        @include retina {
+          background-image: url('../images/header/mylibrary-bg/watched-tabl-bg@x2.png');
+        }
+      }
+      @include desk {
+        background-image: url('../images/header/mylibrary-bg/watched-desk-bg@x1.png');
+        @include retina {
+          background-image: url('../images/header/mylibrary-bg/watched-desk-bg@x2.png');
+        }
+      }
+
+}
+
+
 .header-myLibrary__wrap {
-    text-align: center;
+    display: flex;
+    gap: 35;
+    justify-content: center;
+    margin-top: 60px; 
+
+    @include tab {
+      margin-top: 41px;
+    }
+
+    @include desk {
+      gap: 16px;
+    }
+}
+
+.header_btn-watched,
+.header_btn-queue {
+    width: 152px;
+    height: 44px;
+    background-color: transparent;
+    border-color: #fff;
+    color: #fff;
+    text-transform: uppercase;
+    transition: background-color 250ms ease-in-out, border-color 250ms ease-in-out;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+
+    &:hover,
+    &:focus {
+        border-color: transparent;
+    }
+
 }

@@ -51,6 +51,15 @@ body {
     }
 }
 
+.btn {
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background-color: $button-and-after;
+    }
+}
+
 .visually-hidden {
     position: absolute;
     white-space: nowrap;
