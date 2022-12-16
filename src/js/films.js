@@ -2,6 +2,7 @@ import { BASE_URL } from './apiFilms/baseUrl';
 export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
+import { displayLoader } from './spinner';
 const trending = new TrendingFilmsApiService();
 
 const filmGallery = document.querySelector('.film-gallery');
@@ -18,13 +19,17 @@ export let observer = new IntersectionObserver(
   ObserverOptions
 );
 
+
 let page = trending.page;
 
 function observerFunction(entries, observer) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       trending.incrementPage();
-      filmer();
+      displayLoader();
+      filmer().then(function () {
+        document.querySelector('.loader').remove()
+      });
       page += 1;
       console.log(page);
     }
@@ -47,7 +52,9 @@ export async function filmer() {
   }
 }
 
-// filmer();
+filmer().then(function () {
+  document.querySelector('.loader').remove()
+});
 
 function markUpGallery(filmsArr, genres) {
   console.log('filmsArr', filmsArr);

@@ -1,11 +1,17 @@
 import LoadMoreBtn from './load-more-btn'
 
-// window.addEventListener('load', function() {
-//     console.log('123456789')
-// });
+const container = document.querySelector('body')
+
+window.addEventListener('load', function() {
+    displayLoader();
+});
+
+export function displayLoader() {
+    container.insertAdjacentHTML('beforeBegin', '<div class="loader"></div>');
+}
 
 
-// document.addEventListener('')
+
 
 
 // const loadMoreBtn = new LoadMoreBtn({
