@@ -1,0 +1,25 @@
+.loader-background {
+    height: 100vh;
+    display: flex;
+    background: #fff;
+    z-index: 100;
+   }
+.loader {
+    top: 0;
+    left: 0;
+    margin-top: 25%;
+    margin-left: 50%;
+    width: 75px;
+    height: 75px;
+    border:10px solid rgba(13, 71, 161, 0.6);
+    border-radius: 50%;
+    border-left-color:#0D47A1;
+    animation: loader 1.3s linear infinite;
+    z-index: 100;
+    position: fixed;
+   }
+   @keyframes loader {
+    100% {
+     transform: rotate(360deg);
+    }
+   }
