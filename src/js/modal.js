@@ -21,22 +21,22 @@ async function fetchMovieDetails(movieId) {
 }
 
 function onModalWindowOpen(e) {
-  let movieId = 0;
-  if (e.target.closest('li')) {
-    movieId = e.target.closest('li').dataset.id;
-  }
-
-  const information = document.querySelector('.information');
+  if (e.target.nodeNmae === 'LI') {
+    return;
+  } else if (e.target.closest('li')) {
+    const movieId = e.target.closest('li').dataset.id;
+    const information = document.querySelector('.information');
   if (information) {
     information.remove();
-  }
-
-  fetchMovieDetails(movieId)
+    }
+    
+    fetchMovieDetails(movieId)
     .then(movie => renderMovieModal(movie))
-    .catch(error => console.log(error));
-
+      .catch(error => console.log(error));
+    document.body.style.overflow = 'hidden';
   backdrop.classList.remove('is-hidden');
   document.addEventListener('keydown', onEscClose);
+  }
 }
 
 function renderMovieModal({
@@ -91,6 +91,7 @@ function renderMovieModal({
 
 function onModalWindowClose() {
   backdrop.classList.add('is-hidden');
+  document.body.style.overflow = 'visible';
 }
 
 function onBackdropClick(e) {

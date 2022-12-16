@@ -2,8 +2,8 @@ import { API_KEY } from './apiKey';
 import { BASE_URL } from './baseUrl';
 
 import fetchMovies from './fetchMovies';
-import {markUpGallery} from '../films';
-import infiniteScroll from '../infiniteScroll';
+import { markUpGallery, observer } from '../films';
+import infiniteScroll, { scrollListener } from '../infiniteScroll';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
@@ -19,6 +19,13 @@ searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
     return;
   }
 
+  if (/^\s+$/.test(searchInput.value)) {
+    searchInput.value = '';
+    return;
+  }
+
+  observer.disconnect();
+  window.removeEventListener('scroll', scrollListener);
   filmGallery.innerHTML = '';
 
   //Place for spinner
@@ -28,6 +35,8 @@ searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   const total_results = await fetchedMovies.data.total_results;
 
   if (fetchedMovies.data.total_results === 0) {
+    searchInput.value = '';
+
     Notify.warning(
       'Sorry, there are no movies matching your search query. Please try again.'
     );
@@ -46,5 +55,6 @@ searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
     return;
   }
 
-  infiniteScroll(page, per_page);
+  infiniteScroll(searchInput.value, page, per_page);
+  searchInput.value = '';
 });

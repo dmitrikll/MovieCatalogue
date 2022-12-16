@@ -13,7 +13,10 @@ let ObserverOptions = {
   threshold: 1.0,
 };
 
-let observer = new IntersectionObserver(observerFunction, ObserverOptions);
+export let observer = new IntersectionObserver(
+  observerFunction,
+  ObserverOptions
+);
 
 let page = trending.page;
 
