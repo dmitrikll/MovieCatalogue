@@ -3,10 +3,12 @@ export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
 import axios from 'axios';
 import { displayLoader } from './spinner';
+import getRefs from './refs';
+const { filmGallery, guard } = getRefs();
 const trending = new TrendingFilmsApiService();
 
-const filmGallery = document.querySelector('.film-gallery');
-const guard = document.querySelector('.guard-js');
+// const filmGallery = document.querySelector('.film-gallery');
+// const guard = document.querySelector('.guard-js');
 
 let ObserverOptions = {
   root: null,
