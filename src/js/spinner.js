@@ -2,9 +2,9 @@ import LoadMoreBtn from './load-more-btn'
 
 const container = document.querySelector('body')
 
-window.addEventListener('load', function() {
-    displayLoader();
-});
+// window.addEventListener('load', function() {
+//     displayLoader();
+// });
 
 export function displayLoader() {
     // container.classList.add('.loader-background');
