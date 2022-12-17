@@ -8,7 +8,7 @@ import { markUpGallery } from './films';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 import throttle from 'lodash.throttle';
-import { displayLoader } from './spinner';
+import { disableLoader, displayLoader } from './spinner';
 
 const filmGallery = document.querySelector('.film-gallery');
 
@@ -34,13 +34,12 @@ export default function infiniteScroll(query, page, per_page = 20) {
       page += 1;
 
       //Place for spinner
-      displayLoader();
-      const fetchedMovies = await fetchMovies(query, page).then(function () {
-        document.querySelector('.loader').remove()
-      });
+      displayLoader()
+      const fetchedMovies = await fetchMovies(query, page);
       const genres = await axios(
         `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
       );
+      disableLoader()
       
 
       const total_results = await fetchedMovies.data.total_results;
