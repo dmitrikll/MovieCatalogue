@@ -83,7 +83,7 @@ function renderMovieModal({
       <p class="about">About</p>
       <p class="about-descr">${overview}</p>
       <div class="button-wrapper">
-      <button class="button btn-add-to-watched" type="button">Add to watched</button>
+      <button class="button btn-add-to-watched modal__active-btn" type="button">Add to watched</button>
       <button class="button btn-add-to-queue" type="button">Add to queue</button>
     </div>
   </div>
