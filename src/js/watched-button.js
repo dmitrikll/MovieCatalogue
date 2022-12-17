@@ -27,56 +27,43 @@ function onWatchedMarkup() {
     if (filmsFromLocalStorage) {
       topMoviesMarkUp(filmsFromLocalStorage);
     } else {
-      const placeholder = document.querySelector('.placeholder');
+      const placeholder = document.querySelector('.js-search__form');
       placeholder.style.display = 'block';
       refs.list.innerHTML = '';
     }
   }
   
-// мій варіант розмітки
 
-  function topMoviesMarkUp(movies) {
-    refs.list.innerHTML = movies
-      .map(movie => {
-        let movie_g = getGenrs(JSON.parse(localStorage.getItem('genres')));
-        if (movie_g.length > 2) {
-          movie_g = [movie_g[0], movie_g[1], 'Other'];
-        }
-        return `<li class="movies__item" id="${movie.id}" data-id=${movie.id}>
-      <a href="" class="movies__link">
-          <img src='${checkImgLink(
-            movie.poster_path
-          )}' class="movie__image" alt="Movie">
-          <div class="movie__text-part">
-              <h2 class="movie__title">${movie.title || movie.name}</h2>
-              <p class="movie__genre">${
-                movie_g.join(', ') || 'No data'
-              } <span class="stick">|</span> 
-                  <span class="movie__year">${
-                    (movie.release_date || movie.first_air_date || '').slice(
-                      0,
-                      4
-                    ) || 'No data'
-                  }</span></p>
-          </div>
-      </a>
-  </li>`;
-      })
-      .join('');
+
+//  function markUpGallery(films) {
+//  refs.list.innerHTML = films.map(film=>{
+//  
+// `<li class = "film-gallery__item" data-id="${id}">
+//            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
+//            <div class="film-gallery__info">
+//             <p class="film-gallery__title">${title.toUpperCase()}</p>
+//             <p class="film-gallery__text">${Object.values(genresList).join(
+//               ', '
+//             )} | ${releaseYear}</p>
+//           </div>
+//           </li>`;
+//     })
+
+
+//   const placeholder = document.querySelector('js-search__form');
+//   if (isLocalStorageItemEmpty('queue')) {
+//     placeholder.style.display = 'block';
+//   } else {
+//     placeholder.style.display = 'none';
+//   }
+// }
+    
   
-    const placeholder = document.querySelector('.placeholder');
-    if (isLocalStorageItemEmpty('watched')) {
-      placeholder.style.display = 'block';
-    } else {
-      placeholder.style.display = 'none';
-    }
-  }
-  
-  function getGenrs(genres) {
-    return genres.map(genre => {
-      return genre.name;
-    });
-  }
+  // function getMovieById(values) {
+  //   return values.map(value => {
+  //     return value.name;
+  //   });
+  // }
   
   function isLocalStorageItemEmpty(localStorageKey) {
     if (!localStorage.getItem(localStorageKey)) {
@@ -89,7 +76,7 @@ function onWatchedMarkup() {
   //Rerender after delete movie
   const btnAddToWatch = document.querySelector('.wached');
   btnAddToWatch.addEventListener('click', e => {
-    setTimeout(() => onWatchedMarkup(), 100); //Dirty hack due to late work with localstorage
+    setTimeout(() => onWatchedMarkup(), 100); 
   });
   
   function getActiveTab() {
@@ -99,114 +86,3 @@ function onWatchedMarkup() {
       ? 'watched'
       : 'queue';
   }
-  function checkImgLink(data) {
-    if (data) {
-      return `https://image.tmdb.org/t/p/original/${data}`;
-    }
-    return `https://bflix.biz/no-poster.png`;
-  }
-
-
-// ==== У пагінацію та Local-storsge мій варіант з моїми класами для врегулювання ====
-
-  // function topMoviesMarkUp(movies) {
-  //   refs.list.innerHTML = [...movies]
-  //     .map(movie => {
-  //       let movie_g = [];
-  //       if (movie.genre_ids) {
-  //         movie_g = getGenrs(
-  //           movie.genre_ids,
-  //           JSON.parse(localStorage.getItem('genres'))
-  //         );
-  //       }
-  //       if (movie_g.length > 2) {
-  //         movie_g = [movie_g[0], movie_g[1], 'Other'];
-  //       }
-  //       return `<li class="movies__item" id="${movie.id}" data-id=${movie.id}>
-  //     <a href="" class="movies__link">
-  //         <img src='${checkImgLink(
-  //         movie.poster_path
-  //       )}' class="movie__image" alt="Movie">
-  //         <div class="movie__text-part">
-  //             <h2 class="movie__title">${movie.title || movie.name}</h2>
-  //             <p class="movie__genre">${movie_g.join(', ') || 'No data'
-  //         } <span class="stick">|</span> 
-  //                 <span class="movie__year">${(movie.release_date || movie.first_air_date || '').slice(
-  //           0,
-  //           4
-  //         ) || 'No data'
-  //         }</span></p>
-  //         </div>
-  //     </a>
-  // </li>`;
-  //     })
-  //     .join('');
-  // }
-
-
-  // function getGenrs(genresID, genres) {
-  //   return genresID.map(id => {
-  //     if (genres.find(genre => genre.id === id)) {
-  //       return genres.find(genre => genre.id === id).name;
-  //     } else {
-  //       return 'Self made';
-  //     }
-  //   });
-  // }
-
-
-
-//  ====   SCSS для кнопок:  ==== 
-
-  // .header_btn-watched {
-  //   display: block;
-  //     margin-left: 20px;
-  //     width: 148px;
-  //     height: 42px;
-  //     background: transparent;
-  //     border: 1px solid #ffffff;
-  //     border-radius: 5px;
-  //     font-family: 'Roboto';
-  //     font-style: normal;
-  //     font-weight: 500;
-  //     font-size: 12px;
-  //     line-height: 16 / 12;
-  //     color: #ffffff;
-    
-  //     @include tab {
-  //       margin-left: 32px;
-  //     }
-    
-  //   @include desk {
-  //       margin-left: 16px;
-  //     }
-  // }
-  
-  // .header_btn-queue {
-  //   display: block;
-  //   margin-left: 20px;
-  //   width: 148px;
-  //   height: 42px;
-  //   background: transparent;
-  //   border: 1px solid #ffffff;
-  //   border-radius: 5px;
-  //   font-family: 'Roboto';
-  //   font-style: normal;
-  //   font-weight: 500;
-  //   font-size: 12px;
-  //   line-height: 16 / 12;
-  //   color: #ffffff;
-  //    @include tab {
-  //     margin-left: 32px;
-  //   }
-  
-  //    @include desk {
-  //     margin-left: 16px;
-  //   }
-  // }
-  // .header-active-button {
-  //   border: none;
-  //   background: #ff6b01;
-  //   color: #ffffff;
-    
-  // }

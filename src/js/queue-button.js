@@ -29,43 +29,38 @@ function onWatchedMarkup() {
     refs.list.innerHTML = '';
   }
 }
-// 
-function topMoviesMarkUp(movies) {
-  refs.list.innerHTML = movies
-    .map(movie => {
-      let movie_g = getGenrs(JSON.parse(localStorage.getItem('genres')));
-      if (movie_g.length > 2) {
-        movie_g = [movie_g[0], movie_g[1], 'Other'];
-      }
-      return `<li class="movies__item" id="${movie.id}" data-id=${movie.id}>
-    <a href="" class="movies__link">
-        <img src='${checkImgLink(
-          movie.poster_path
-        )}' class="movie__image" alt="Movie">
-        <div class="movie__text-part">
-            <h2 class="movie__title">${movie.title || movie.name}</h2>
-            <p class="movie__genre">${
-              movie_g.join(', ') || 'No data'
-            } <span class="stick">|</span> 
-                <span class="movie__year">${
-                  (movie.release_date || movie.first_air_date || '').slice(
-                    0,
-                    4
-                  ) || 'No data'
-                }</span></p>
-        </div>
-    </a>
-</li>`;
-    })
-    .join('');
 
-  const placeholder = document.querySelector('.placeholder');
-  if (isLocalStorageItemEmpty('queue')) {
-    placeholder.style.display = 'block';
-  } else {
-    placeholder.style.display = 'none';
-  }
-}
+
+
+//  function markUpGallery(films) {
+//  refs.list.innerHTML = films.map(film=>{
+//  
+// `<li class = "film-gallery__item" data-id="${id}">
+//            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
+//            <div class="film-gallery__info">
+//             <p class="film-gallery__title">${title.toUpperCase()}</p>
+//             <p class="film-gallery__text">${Object.values(genresList).join(
+//               ', '
+//             )} | ${releaseYear}</p>
+//           </div>
+//           </li>`;
+//     })
+
+
+//   const placeholder = document.querySelector('js-search__form');
+//   if (isLocalStorageItemEmpty('queue')) {
+//     placeholder.style.display = 'block';
+//   } else {
+//     placeholder.style.display = 'none';
+//   }
+// }
+    
+  
+  // function getMovieById(values) {
+  //   return values.map(value => {
+  //     return value.name;
+  //   });
+  // }
 
 function isLocalStorageItemEmpty(localStorageKey) {
   if (!localStorage.getItem(localStorageKey)) {
@@ -75,16 +70,12 @@ function isLocalStorageItemEmpty(localStorageKey) {
   return JSON.parse(localStorage.getItem(localStorageKey)).length === 0;
 }
 
-function getGenrs(genres) {
-  return genres.map(genre => {
-    return genre.name;
-  });
-}
+
 
 //Rerender after delete movie
 const btnAddToQueue = document.querySelector('.queue');
 btnAddToQueue.addEventListener('click', e => {
-  setTimeout(() => onWatchedMarkup(), 100); //Dirty hack due to late work with localstorage
+  setTimeout(() => onWatchedMarkup(), 100); 
 });
 
 function getActiveTab() {
@@ -93,10 +84,4 @@ function getActiveTab() {
   return watchedButton.classList.contains('header-active-button')
     ? 'watched'
     : 'queue';
-}
-function checkImgLink(data) {
-  if (data) {
-    return `https://image.tmdb.org/t/p/original/${data}`;
-  }
-  return `https://bflix.biz/no-poster.png`;
 }
