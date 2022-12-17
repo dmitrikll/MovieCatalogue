@@ -1,6 +1,6 @@
 export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
-import { displayLoader } from './spinner';
+import { displayLoader, disableLoader } from './spinner';
 import getRefs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
@@ -36,9 +36,8 @@ const options = {
 const pagination = new Pagination(containerPagination, options);
 
 displayLoader();
-filmer().then(function () {
-  document.querySelector('.loader').remove()
-});
+filmer()
+disableLoader()
 
 async function filmer() {
   try {
@@ -64,13 +63,12 @@ pagination.on('afterMove', async (event) => {
     top: 230
   });
   try {
-    displayLoader()
-    const films = await trending.fetchFilms().then(function () {
-      document.querySelector('.loader').remove()
-    });
+    displayLoader();
+    const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)
+    disableLoader();
     // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
 
   } catch (err) {
