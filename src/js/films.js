@@ -35,7 +35,7 @@ const options = {
 };
 const pagination = new Pagination(containerPagination, options);
 
-
+displayLoader();
 filmer().then(function () {
   document.querySelector('.loader').remove()
 });
@@ -58,13 +58,13 @@ async function filmer() {
 
 pagination.on('afterMove', async (event) => {
   const currentPage = event.page
-trending.page=currentPage;
-displayLoader()
-//на усмотрения Вови
-window.scrollTo({
-  top: 230
-});
+  trending.page=currentPage;
+  //на усмотрения Вови
+  window.scrollTo({
+    top: 230
+  });
   try {
+    displayLoader()
     const films = await trending.fetchFilms().then(function () {
       document.querySelector('.loader').remove()
     });
