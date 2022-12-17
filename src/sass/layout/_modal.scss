@@ -20,11 +20,9 @@
 }
 
 .modal {
-  overflow: auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
   max-height: 100vh;
 
   padding: 48px 20px;
@@ -234,6 +232,8 @@
 }
 
 .about-descr {
+  height: 150px;
+  overflow: auto;
   margin-bottom: 20px;
 
   font-size: 12px;
