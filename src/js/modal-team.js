@@ -10,7 +10,7 @@
   refs.closeModalBtn.addEventListener('click', toggleModal);
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && refs.body.classList.contains('no-scroll')) {
       refs.modal.classList.toggle('is-hidden');
       refs.body.classList.toggle('no-scroll');
     }
