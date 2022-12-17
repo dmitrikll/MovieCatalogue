@@ -14,7 +14,7 @@ export class TrendingFilmsApiService {
       const options = { params: { api_key: API_KEY } };
       const url = `${BASE_URL}/trending/movie/week?page=${this.page}`;
       const response = await axios.get(url, options);
-      return response.data.results;
+      return response.data;
     } catch (error) {
       throw new Error(`Oops, something went wrong`);
     }

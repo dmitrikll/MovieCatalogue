@@ -2,6 +2,7 @@ function getRefs() {
   return {
     filmGallery: document.querySelector('.film-gallery'),
     guard: document.querySelector('.guard-js'),
+    containerPagination: document.getElementById('pagination'),
   };
 }
 
