@@ -1,28 +1,23 @@
-// Запис до LocalStorage
 const setKey = (key, value) => {
   const movieId = JSON.stringify(value);
   localStorage.setItem(key, movieId);
 };
 
-// Отримання з LocalStorage
-const getKey = key => {
+export const getKey = key => {
   let movieId = localStorage.getItem(key);
   return (movieId = JSON.parse(movieId) || undefined);
 };
 
-// Видалення з LocalStorage
 const removeKey = key => {
   localStorage.removeItem(key);
 };
 
-// зміна тексту на кнопках
 export function textModalButton(id) {
   const modalWatchedButton = document.querySelector('.btn-add-to-watched');
   const modalQueueButton = document.querySelector('.btn-add-to-queue');
 
-  // перевірка на наявність у списку
   if (localStorageCheck(id, 'watched')) {
-    modalWatchedButton.textContent = 'Remove watched';
+    modalWatchedButton.textContent = 'Remove from watched';
     modalWatchedButton.classList.add('in-mylibrary');
   } else {
     modalWatchedButton.textContent = 'Add to watched';
@@ -30,7 +25,7 @@ export function textModalButton(id) {
   };
 
   if (localStorageCheck(id, 'queue')) {
-    modalQueueButton.textContent = 'Remove queue';
+    modalQueueButton.textContent = 'Remove from queue';
     modalQueueButton.classList.add('in-mylibrary');
   } else {
     modalQueueButton.textContent = 'Add to queue';
@@ -48,7 +43,6 @@ export function textModalButton(id) {
   };
 };
 
-// зміна переліку фільмів
 export function changeWatchedQueueList(id) {
     const modalWatchedButton = document.querySelector('.btn-add-to-watched');
     const modalQueueButton = document.querySelector('.btn-add-to-queue');
@@ -56,7 +50,6 @@ export function changeWatchedQueueList(id) {
     modalWatchedButton.addEventListener('click', addToWatched);
     modalQueueButton.addEventListener('click', addToQueue);
 
-  // відправка id до LocalStorage - watched
   function addToWatched() {
     const modalWatchedButton = document.querySelector('.btn-add-to-watched');
 
@@ -78,8 +71,8 @@ export function changeWatchedQueueList(id) {
       let queueSet = new Set(queueList);
       if (queueSet.has(id)) {
         removeKey('queue');
-        let filmIndex = queueList.indexOf(id);
-        queueList.splice(filmIndex, 1);
+        let movieIndex = queueList.indexOf(id);
+        queueList.splice(movieIndex, 1);
         setKey('queue', queueList);
       };
 
@@ -94,7 +87,6 @@ export function changeWatchedQueueList(id) {
     };
   };
 
-  // відправка id до LocalStorage - queue
   function addToQueue() {
     const modalQueueButton = document.querySelector('.btn-add-to-queue');
 
@@ -116,8 +108,8 @@ export function changeWatchedQueueList(id) {
       let watchedSet = new Set(watchedList);
       if (watchedSet.has(id)) {
         removeKey('watched');
-        let filmIndex = watchedList.indexOf(id);
-        watchedList.splice(filmIndex, 1);
+        let movieIndex = watchedList.indexOf(id);
+        watchedList.splice(movieIndex, 1);
         setKey('watched', watchedList);
         textModalButton(id);
       };
@@ -133,7 +125,6 @@ export function changeWatchedQueueList(id) {
     };
   };
 
-  // видалення id з LocalStorage - watched
   function removeFromWatched(id) {
     let watchedList = [];
     let userWatchedList = getKey('watched');
@@ -144,15 +135,14 @@ export function changeWatchedQueueList(id) {
 
     removeKey('watched');
 
-    let filmIndex = watchedList.indexOf(id);
-    watchedList.splice(filmIndex, 1);
+    let movieIndex = watchedList.indexOf(id);
+    watchedList.splice(movieIndex, 1);
 
     setKey('watched', watchedList);
 
     textModalButton();
   };
 
-  // видалення id з LocalStorage - queue
   function removeFromQueue(id) {
     let queueList = [];
     let userQueueList = getKey('queue');
@@ -163,13 +153,11 @@ export function changeWatchedQueueList(id) {
 
     removeKey('queue');
 
-    let filmIndex = queueList.indexOf(id);
-    queueList.splice(filmIndex, 1);
+    let movieIndex = queueList.indexOf(id);
+    queueList.splice(movieIndex, 1);
 
     setKey('queue', queueList);
     
     textModalButton();
   };
 };
-
-export { setKey, getKey, removeKey };
