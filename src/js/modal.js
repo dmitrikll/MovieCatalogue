@@ -21,7 +21,7 @@ async function fetchMovieDetails(movieId) {
 }
 
 function onModalWindowOpen(e) {
-  if (e.target.nodeNmae === 'LI') {
+  if (!e.target.closest('li')) {
     return;
   } else if (e.target.closest('li')) {
     const movieId = e.target.closest('li').dataset.id;
@@ -105,8 +105,4 @@ function onEscClose(e) {
     document.removeEventListener('keydown', onEscClose);
     onModalWindowClose();
   }
-}
-
-function clearMarkup(container) {
-  container.innerHTML = '';
 }
