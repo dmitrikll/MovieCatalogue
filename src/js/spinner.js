@@ -7,7 +7,8 @@ window.addEventListener('load', function() {
 });
 
 export function displayLoader() {
-    container.insertAdjacentHTML('beforeBegin', '<div class="loader"></div>');
+    // container.classList.add('.loader-background');
+    container.insertAdjacentHTML('afterbegin', '<div class="loader"></div>');
 }
 
 

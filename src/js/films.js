@@ -36,13 +36,10 @@ const options = {
 const pagination = new Pagination(containerPagination, options);
 
 
-
-
-displayLoader()
-filmer();
 filmer().then(function () {
   document.querySelector('.loader').remove()
 });
+
 async function filmer() {
   try {
     const films = await trending.fetchFilms();
@@ -68,7 +65,9 @@ window.scrollTo({
   top: 230
 });
   try {
-    const films = await trending.fetchFilms();
+    const films = await trending.fetchFilms().then(function () {
+      document.querySelector('.loader').remove()
+    });
     const genres = await trending.fetchGenres();
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)

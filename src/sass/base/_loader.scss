@@ -11,12 +11,14 @@
     margin-left: 50%;
     width: 75px;
     height: 75px;
-    border:10px solid rgba(13, 71, 161, 0.6);
+    // background-color: red;
+    border:10px solid #8e0e1f;
     border-radius: 50%;
-    border-left-color:#0D47A1;
+    border-left-color: #182025;
     animation: loader 1.3s linear infinite;
     z-index: 100;
     position: fixed;
+    // background-image: url('images/loader/loader.jpg');
    }
    @keyframes loader {
     100% {
