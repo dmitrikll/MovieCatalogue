@@ -38,6 +38,7 @@ export default function infiniteScroll(query, page, per_page = 20) {
       const genres = await axios(
         `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
       );
+      
 
       const total_results = await fetchedMovies.data.total_results;
 

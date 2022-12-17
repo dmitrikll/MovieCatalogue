@@ -1,61 +1,82 @@
-import { BASE_URL } from './apiFilms/baseUrl';
 export { markUpGallery };
 import { TrendingFilmsApiService } from './apiFilms/apiTrending';
-import axios from 'axios';
 import { displayLoader } from './spinner';
 import getRefs from './refs';
-const { filmGallery, guard } = getRefs();
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+
+const { filmGallery,containerPagination } = getRefs();
 const trending = new TrendingFilmsApiService();
 
-// const filmGallery = document.querySelector('.film-gallery');
-// const guard = document.querySelector('.guard-js');
-
-let ObserverOptions = {
-  root: null,
-  rootMargin: '500px',
-  threshold: 1.0,
+const options = {
+  totalItems: 100,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>'
+  }
 };
-
-export let observer = new IntersectionObserver(
-  observerFunction,
-  ObserverOptions
-);
+const pagination = new Pagination(containerPagination, options);
 
 
-let page = trending.page;
 
-function observerFunction(entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      trending.incrementPage();
-      displayLoader();
-      filmer().then(function () {
-        document.querySelector('.loader').remove()
-      });
-      page += 1;
-      console.log(page);
-    }
-  });
-}
 
-export async function filmer() {
+displayLoader()
+filmer();
+filmer().then(function () {
+  document.querySelector('.loader').remove()
+});
+async function filmer() {
   try {
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
+    const total_results = await films.total_results;
+    pagination.setTotalItems(total_results);
+    pagination.reset();
+    containerPagination.classList.remove('hide')
     trending.genres = genres;
-    console.log('into filmer -trending.genres', trending.genres);
-    console.log('into filmer -genres', genres);
-    // filmGallery.innerHTML = markUpGallery(films,genres)
-    filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
-    observer.observe(guard);
-    // btnRef.style.display = 'block';
+    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
   } catch (err) {
     console.log(err);
   }
 }
 
-filmer().then(function () {
-  document.querySelector('.loader').remove()
+pagination.on('afterMove', async (event) => {
+  const currentPage = event.page
+trending.page=currentPage;
+displayLoader()
+//на усмотрения Вови
+window.scrollTo({
+  top: 230
+});
+  try {
+    const films = await trending.fetchFilms();
+    const genres = await trending.fetchGenres();
+    trending.genres = genres;
+    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 function markUpGallery(filmsArr, genres) {
@@ -82,3 +103,114 @@ function markUpGallery(filmsArr, genres) {
     })
     .join('');
 }
+
+// filmer().then(function () {
+//   document.querySelector('.loader').remove()
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const filmGallery = document.querySelector('.film-gallery');
+// const guard = document.querySelector('.guard-js');
+//old
+// let ObserverOptions = {
+//   root: null,
+//   rootMargin: '500px',
+//   threshold: 1.0,
+// };
+
+// export let observer = new IntersectionObserver(
+//   observerFunction,
+//   ObserverOptions
+// );
+
+
+// let page = trending.page;
+
+// function observerFunction(entries, observer) {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       trending.incrementPage();
+//       displayLoader();
+//       filmer().then(function () {
+//         document.querySelector('.loader').remove()
+//       });
+//       page += 1;
+//       console.log(page);
+//     }
+//   });
+// }
+
+// export async function filmer() {
+//   try {
+//     const films = await trending.fetchFilms();
+//     const genres = await trending.fetchGenres();
+//     trending.genres = genres;
+//     console.log('into filmer -trending.genres', trending.genres);
+//     console.log('into filmer -genres', genres);
+//     // filmGallery.innerHTML = markUpGallery(films,genres)
+//     filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films, genres));
+//     observer.observe(guard);
+//     // btnRef.style.display = 'block';
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+
+//єто нужно
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

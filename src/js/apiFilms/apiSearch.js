@@ -1,10 +1,10 @@
 import { API_KEY } from './apiKey';
 import { BASE_URL } from './baseUrl';
-
+import getRefs from '../refs';
 import fetchMovies from './fetchMovies';
 import { markUpGallery, observer } from '../films';
 import infiniteScroll, { scrollListener } from '../infiniteScroll';
-
+const { containerPagination } = getRefs();
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const filmGallery = document.querySelector('.film-gallery');
 
 searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   e.preventDefault();
-
+  containerPagination.classList.add('hide')
   if (!searchInput.value) {
     return;
   }
@@ -23,11 +23,10 @@ searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
     searchInput.value = '';
     return;
   }
-
-  observer.disconnect();
+  // observer.disconnect();
   window.removeEventListener('scroll', scrollListener);
   filmGallery.innerHTML = '';
-
+  
   //Place for spinner
 
   const fetchedMovies = await fetchMovies(searchInput.value, page);
@@ -50,6 +49,7 @@ searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
     'beforeend',
     markUpGallery(fetchedMovies.data.results, genres.data.genres)
   );
+  // container.classList.add('hide') // для приховування стор. пагінації
 
   if (per_page * page >= total_results) {
     return;
