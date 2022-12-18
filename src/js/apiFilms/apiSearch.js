@@ -14,19 +14,16 @@ const filmGallery = document.querySelector('.film-gallery');
 
 searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   e.preventDefault();
-  containerPagination.classList.add('hide')
-  if (!searchInput.value) {
-    return;
-  }
+  containerPagination.classList.add('hide');
 
-  if (/^\s+$/.test(searchInput.value)) {
+  if (/^\s*$/.test(searchInput.value)) {
     searchInput.value = '';
     return;
   }
   // observer.disconnect();
   window.removeEventListener('scroll', scrollListener);
   filmGallery.innerHTML = '';
-  
+
   //Place for spinner
 
   const fetchedMovies = await fetchMovies(searchInput.value, page);

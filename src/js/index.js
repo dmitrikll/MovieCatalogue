@@ -5,3 +5,4 @@ import './modal';
 // import './pagination';
 import './modal-team';
 import './login';
+import './theme'

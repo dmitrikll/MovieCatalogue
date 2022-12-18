@@ -5,7 +5,7 @@ import getRefs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-const { filmGallery,containerPagination } = getRefs();
+const { filmGallery, containerPagination } = getRefs();
 const trending = new TrendingFilmsApiService();
 
 const options = {
@@ -37,8 +37,8 @@ const options = {
 const pagination = new Pagination(containerPagination, options);
 
 displayLoader();
-filmer()
-disableLoader()
+filmer();
+disableLoader();
 
 async function filmer() {
   try {
@@ -47,42 +47,42 @@ async function filmer() {
     const total_results = await films.total_results;
     pagination.setTotalItems(total_results);
     pagination.reset();
-    containerPagination.classList.remove('hide')
+    containerPagination.classList.remove('hide');
     trending.genres = genres;
-    filmGallery.innerHTML = markUpGallery(films.results,genres)
-    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
+    filmGallery.innerHTML = markUpGallery(films.results, genres);
   } catch (err) {
     console.log(err);
   }
 }
 
-pagination.on('afterMove', async (event) => {
-  const currentPage = event.page
-  trending.page=currentPage;
+pagination.on('afterMove', async event => {
+  const currentPage = event.page;
+  trending.page = currentPage;
   //на усмотрения Вови
   window.scrollTo({
-    top: 230
+    top: 230,
   });
   try {
     displayLoader();
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
     trending.genres = genres;
-    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    filmGallery.innerHTML = markUpGallery(films.results, genres);
     disableLoader();
     // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
-
   } catch (err) {
     console.log(err);
   }
 });
 
 function markUpGallery(filmsArr, genres) {
-  console.log('filmsArr', filmsArr);
-  console.log('genres', genres);
   return filmsArr
     .map(({ id, title, release_date, poster_path, genre_ids }) => {
-      const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      let imgPath = `../images/api/poster.jpg`;
+      if (poster_path) {
+        imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      }
+
       const releaseDate = new Date(`${release_date}`);
       const releaseYear = releaseDate.getFullYear();
       const genresList = genres
@@ -102,23 +102,6 @@ function markUpGallery(filmsArr, genres) {
     .join('');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const filmGallery = document.querySelector('.film-gallery');
 // const guard = document.querySelector('.guard-js');
 //old
@@ -132,7 +115,6 @@ function markUpGallery(filmsArr, genres) {
 //   observerFunction,
 //   ObserverOptions
 // );
-
 
 // let page = trending.page;
 
@@ -166,45 +148,6 @@ function markUpGallery(filmsArr, genres) {
 //   }
 // }
 
-
 //єто нужно
 
-
-
 //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
