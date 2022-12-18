@@ -49,7 +49,6 @@ async function filmer() {
     containerPagination.classList.remove('hide')
     trending.genres = genres;
     filmGallery.innerHTML = markUpGallery(films.results,genres)
-    // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
   } catch (err) {
     console.log(err);
   }
@@ -92,9 +91,7 @@ function markUpGallery(filmsArr, genres) {
            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="film-gallery__info">
             <p class="film-gallery__title">${title.toUpperCase()}</p>
-            <p class="film-gallery__text">${Object.values(genresList).join(
-              ', '
-            )} | ${releaseYear}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
           </div>
           </li>`;
     })
