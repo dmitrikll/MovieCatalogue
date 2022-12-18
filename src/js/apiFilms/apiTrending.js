@@ -6,18 +6,15 @@ import axios from 'axios';
 export class TrendingFilmsApiService {
   constructor() {
     this.page = 1;
-    // this.genres = this.fetchGenres();
+    
   }
 
   async fetchFilms() {
-    try {
+  
       const options = { params: { api_key: API_KEY } };
       const url = `${BASE_URL}/trending/movie/week?page=${this.page}`;
       const response = await axios.get(url, options);
       return response.data;
-    } catch (error) {
-      throw new Error(`Oops, something went wrong`);
-    }
   }
 
   async fetchGenres() {
