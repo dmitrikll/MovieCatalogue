@@ -1,0 +1,20 @@
+.tui-page-btn.tui-is-selected.custom {
+    color: #fff;
+    background: $film-genre;
+    border-color: #ff6b01;
+    border-radius: 25%;
+    border: none;
+}
+.tui-pagination .custom.tui-page-btn:hover {
+    background-color: $button-and-after;
+    border-radius: 25%;
+}
+
+.tui-pagination .tui-page-btn.custom {
+    border-radius: 25%;
+    border: none;
+    margin-left: 17px;
+}
+.tui-pagination .tui-first-child.tui-is-selected.custom{
+    border:none;
+}
