@@ -5,7 +5,7 @@ import getRefs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-const { filmGallery,containerPagination } = getRefs();
+const { filmGallery, containerPagination } = getRefs();
 const trending = new TrendingFilmsApiService();
 
 const options = {
@@ -18,26 +18,27 @@ const options = {
   lastItemClassName: 'tui-last-child',
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
-      '</a>'
-  }
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
 };
 const pagination = new Pagination(containerPagination, options);
 
 displayLoader();
-filmer()
-disableLoader()
+filmer();
+disableLoader();
 
 async function filmer() {
   try {
@@ -46,41 +47,42 @@ async function filmer() {
     const total_results = await films.total_results;
     pagination.setTotalItems(total_results);
     pagination.reset();
-    containerPagination.classList.remove('hide')
+    containerPagination.classList.remove('hide');
     trending.genres = genres;
-    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    filmGallery.innerHTML = markUpGallery(films.results, genres);
   } catch (err) {
     console.log(err);
   }
 }
 
-pagination.on('afterMove', async (event) => {
-  const currentPage = event.page
-  trending.page=currentPage;
+pagination.on('afterMove', async event => {
+  const currentPage = event.page;
+  trending.page = currentPage;
   //на усмотрения Вови
   window.scrollTo({
-    top: 230
+    top: 230,
   });
   try {
     displayLoader();
     const films = await trending.fetchFilms();
     const genres = await trending.fetchGenres();
     trending.genres = genres;
-    filmGallery.innerHTML = markUpGallery(films.results,genres)
+    filmGallery.innerHTML = markUpGallery(films.results, genres);
     disableLoader();
     // filmGallery.insertAdjacentHTML('beforeend', markUpGallery(films.results, genres));
-
   } catch (err) {
     console.log(err);
   }
 });
 
 function markUpGallery(filmsArr, genres) {
-  console.log('filmsArr', filmsArr);
-  console.log('genres', genres);
   return filmsArr
     .map(({ id, title, release_date, poster_path, genre_ids }) => {
-      const imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      let imgPath = `../images/api/poster.jpg`;
+      if (poster_path) {
+        imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      }
+
       const releaseDate = new Date(`${release_date}`);
       const releaseYear = releaseDate.getFullYear();
       const genresList = genres
@@ -91,7 +93,9 @@ function markUpGallery(filmsArr, genres) {
            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="film-gallery__info">
             <p class="film-gallery__title">${title.toUpperCase()}</p>
-            <p class="film-gallery__text">${Object.values(genresList).join(', ')} | ${releaseYear}</p>
+            <p class="film-gallery__text">${Object.values(genresList).join(
+              ', '
+            )} | ${releaseYear}</p>
           </div>
           </li>`;
     })
@@ -101,23 +105,6 @@ function markUpGallery(filmsArr, genres) {
 // filmer().then(function () {
 //   document.querySelector('.loader').remove()
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const filmGallery = document.querySelector('.film-gallery');
 // const guard = document.querySelector('.guard-js');
@@ -132,7 +119,6 @@ function markUpGallery(filmsArr, genres) {
 //   observerFunction,
 //   ObserverOptions
 // );
-
 
 // let page = trending.page;
 
@@ -166,45 +152,6 @@ function markUpGallery(filmsArr, genres) {
 //   }
 // }
 
-
 //єто нужно
 
-
-
 //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
