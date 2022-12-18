@@ -32,7 +32,7 @@ export function inWatchedLocalStorage() {
     };
 };
 
-export function ininQueueLocalStorage() {
+export function inQueueLocalStorage() {
     if (getKey('queue')) {
         queueIdList = getKey('queue')
     };
