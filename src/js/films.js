@@ -17,22 +17,22 @@ const options = {
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
   template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage:
-      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    page: '<a href="#" class="tui-page-btn custom">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn custom tui-is-selected custom">{{page}}</strong>',
     moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '<a href="#" class="tui-page-btn custom tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
+      '<span class="tui-page-btn custom tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>'
+      ,
     moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
-  },
+      '<a href="#" class="tui-page-btn custom tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>'
+  }
 };
 const pagination = new Pagination(containerPagination, options);
 
@@ -101,10 +101,6 @@ function markUpGallery(filmsArr, genres) {
     })
     .join('');
 }
-
-// filmer().then(function () {
-//   document.querySelector('.loader').remove()
-// });
 
 // const filmGallery = document.querySelector('.film-gallery');
 // const guard = document.querySelector('.guard-js');

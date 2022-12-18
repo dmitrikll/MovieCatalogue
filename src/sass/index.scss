@@ -13,7 +13,7 @@
 @import './base/loader';
 @import './base/theme';
 // components
-
+@import './components/pagination';
 // layout
 @import './layout/header';
 @import './layout/mylibrary-header';
@@ -23,3 +23,4 @@
 @import './layout/my-team-modal';
 @import './layout/login';
 // utils
+
