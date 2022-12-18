@@ -1,6 +1,6 @@
 .login {
   height: 400px;
-  width: 300px;
+  width: 280px;
   background-color: #ffffff77;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -26,14 +26,25 @@
     }
   }
 
+  &__control {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  &__current-user {
+    margin-left: auto;
+    color: #fff;
+  }
+
   &__open-button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 32px;
     height: 32px;
-    margin-left: auto;
-    margin-right: 40px;
     padding: 0;
     border: none;
     border-radius: 10px;
@@ -69,6 +80,7 @@
     color: #333;
     font-size: 24px;
     user-select: none;
+    cursor: pointer;
   }
 
   &__radio:checked + label {
