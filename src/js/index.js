@@ -6,3 +6,4 @@ import './modal';
 import './modal-team';
 import './login';
 import './theme'
+import './mylibrary'
