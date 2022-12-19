@@ -1,8 +1,10 @@
-import './spinner';
-import './films';
-import './apiFilms/apiSearch';
+import './loader';
+import './fetchMoviesAPIService';
+import './onHomePageLoad';
+import './movieSearchService';
+import './infiniteScroll';
 import './modal';
-// import './pagination';
+import './modal-button-localstorage';
 import './modal-team';
 import './login';
-import './theme'
+import './theme';
