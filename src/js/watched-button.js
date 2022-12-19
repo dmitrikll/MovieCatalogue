@@ -1,13 +1,20 @@
-import getRefs from './refs';
-const { filmGallery, watchedBtn, queueBtn } = getRefs();
+import TrendingFilmsApiService from './apiFilms/apiTrending';
+const refs = {
+  watchedBtn: document.querySelector('.header_btn-watched'),
+  queueBtn: document.querySelector('.header_btn-queue'),
+  list: document.querySelector('.film-gallery'),
+  addToWatchedBtn: document.querySelector('.btn-add-to-watched'),
+};
+
+const TrendingFilmsApiService = new TrendingApiService();
 
 onWatchedMarkup();
 
-watchedBtn.addEventListener('click', onWatchedBtnClick);
+refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 
 function onWatchedBtnClick() {
-  queueBtn.classList.remove('header-active-button');
-  watchedBtn.classList.add('header-active-button');
+  refs.queueBtn.classList.remove('header-active-button');
+  refs.watchedBtn.classList.add('header-active-button');
   onWatchedMarkup();
 }
 
@@ -22,7 +29,7 @@ function onWatchedMarkup() {
   } else {
     const placeholder = document.querySelector('.js-search__form');
     placeholder.style.display = 'block';
-    filmGallery.innerHTML = '';
+    refs.list.innerHTML = '';
   }
 }
 

@@ -1,6 +1,12 @@
+import {
+  textModalButton,
+  changeWatchedQueueList,
+} from './modal-button-localstorage';
+
 const modalWindow = document.querySelector('.modal');
 
 export function renderMovieModal({
+  id,
   genres,
   original_title,
   overview,
@@ -41,11 +47,14 @@ export function renderMovieModal({
       <p class="about">About</p>
       <p class="about-descr">${overview}</p>
       <div class="button-wrapper">
-      <button class="button" type="button">Add to watched</button>
-      <button class="button" type="button">Add to queue</button>
+      <button class="button btn-add-to-watched modal__active-btn" type="button">Add to watched</button>
+      <button class="button btn-add-to-queue" type="button">Add to queue</button>
     </div>
   </div>
 </div>`;
 
   modalWindow.firstElementChild.insertAdjacentHTML('afterend', markup);
+
+  changeWatchedQueueList(id);
+  textModalButton(id);
 }

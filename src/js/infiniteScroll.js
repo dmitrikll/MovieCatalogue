@@ -12,7 +12,6 @@ async function fetchInfiniteResults(query, page) {
   isFetching = true;
 
   const fetchedMovies = await fetchSearchQuery(query, page);
-  console.log(fetchedMovies);
   const genres = await fetchGenres();
   const totalResults = await fetchedMovies.data.total_results;
 

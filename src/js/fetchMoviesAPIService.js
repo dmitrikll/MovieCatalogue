@@ -46,4 +46,17 @@ async function fetchMovieDetails(movieId) {
   return await response.json();
 }
 
-export { fetchMovies, fetchGenres, fetchSearchQuery, fetchMovieDetails };
+async function getMovieById(value) {
+  const params = new URLSearchParams({ api_key: API_KEY });
+  const response = await fetch(`${BASE_URL}/movie/${value}?${params}`);
+  const moviesData = await response.json();
+  return moviesData;
+}
+
+export {
+  fetchMovies,
+  fetchGenres,
+  fetchSearchQuery,
+  fetchMovieDetails,
+  getMovieById,
+};
