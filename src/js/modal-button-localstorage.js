@@ -12,7 +12,7 @@ const removeKey = key => {
   localStorage.removeItem(key);
 };
 
-function textModalButton(id) {
+export function textModalButton(id) {
   const modalWatchedButton = document.querySelector('.btn-add-to-watched');
   const modalQueueButton = document.querySelector('.btn-add-to-queue');
 
@@ -22,7 +22,7 @@ function textModalButton(id) {
   } else {
     modalWatchedButton.textContent = 'Add to watched';
     modalWatchedButton.classList.remove('in-mylibrary');
-  }
+  };
 
   if (localStorageCheck(id, 'queue')) {
     modalQueueButton.textContent = 'Remove from queue';
@@ -30,25 +30,25 @@ function textModalButton(id) {
   } else {
     modalQueueButton.textContent = 'Add to queue';
     modalQueueButton.classList.remove('in-mylibrary');
-  }
+  };
 
   function localStorageCheck(id, key) {
     let array = [];
     let localStorageArray = getKey(key);
     if (localStorageArray) {
       array = [...localStorageArray];
-    }
+    };
     const listSet = new Set(array);
     return listSet.has(id);
-  }
-}
+  };
+};
 
-function changeWatchedQueueList(id) {
-  const modalWatchedButton = document.querySelector('.btn-add-to-watched');
-  const modalQueueButton = document.querySelector('.btn-add-to-queue');
+export function changeWatchedQueueList(id) {
+    const modalWatchedButton = document.querySelector('.btn-add-to-watched');
+    const modalQueueButton = document.querySelector('.btn-add-to-queue');
 
-  modalWatchedButton.addEventListener('click', addToWatched);
-  modalQueueButton.addEventListener('click', addToQueue);
+    modalWatchedButton.addEventListener('click', addToWatched);
+    modalQueueButton.addEventListener('click', addToQueue);
 
   function addToWatched() {
     const modalWatchedButton = document.querySelector('.btn-add-to-watched');
@@ -60,13 +60,13 @@ function changeWatchedQueueList(id) {
       let userWatchedList = getKey('watched');
       if (userWatchedList) {
         watchedList = [...userWatchedList];
-      }
+      };
 
       let queueList = [];
       let userQueueList = getKey('queue');
       if (userQueueList) {
         queueList = [...userQueueList];
-      }
+      };
 
       let queueSet = new Set(queueList);
       if (queueSet.has(id)) {
@@ -74,7 +74,7 @@ function changeWatchedQueueList(id) {
         let movieIndex = queueList.indexOf(id);
         queueList.splice(movieIndex, 1);
         setKey('queue', queueList);
-      }
+      };
 
       const watchedSet = new Set(watchedList);
       if (watchedSet.has(id)) {
@@ -83,9 +83,9 @@ function changeWatchedQueueList(id) {
         watchedList.push(id);
         setKey('watched', watchedList);
         textModalButton(id);
-      }
-    }
-  }
+      };
+    };
+  };
 
   function addToQueue() {
     const modalQueueButton = document.querySelector('.btn-add-to-queue');
@@ -97,13 +97,13 @@ function changeWatchedQueueList(id) {
       let userQueueList = getKey('queue');
       if (userQueueList) {
         queueList = [...userQueueList];
-      }
+      };
 
       let watchedList = [];
       let userWatchedList = getKey('watched');
       if (userWatchedList) {
         watchedList = [...userWatchedList];
-      }
+      };
 
       let watchedSet = new Set(watchedList);
       if (watchedSet.has(id)) {
@@ -112,7 +112,7 @@ function changeWatchedQueueList(id) {
         watchedList.splice(movieIndex, 1);
         setKey('watched', watchedList);
         textModalButton(id);
-      }
+      };
 
       const queueSet = new Set(queueList);
       if (queueSet.has(id)) {
@@ -121,17 +121,17 @@ function changeWatchedQueueList(id) {
         queueList.push(id);
         setKey('queue', queueList);
         textModalButton(id);
-      }
-    }
-  }
+      };
+    };
+  };
 
   function removeFromWatched(id) {
     let watchedList = [];
     let userWatchedList = getKey('watched');
-
+    
     if (userWatchedList) {
       watchedList = [...userWatchedList];
-    }
+    };
 
     removeKey('watched');
 
@@ -141,7 +141,7 @@ function changeWatchedQueueList(id) {
     setKey('watched', watchedList);
 
     textModalButton();
-  }
+  };
 
   function removeFromQueue(id) {
     let queueList = [];
@@ -149,7 +149,7 @@ function changeWatchedQueueList(id) {
 
     if (userQueueList) {
       queueList = [...userQueueList];
-    }
+    };
 
     removeKey('queue');
 
@@ -157,9 +157,7 @@ function changeWatchedQueueList(id) {
     queueList.splice(movieIndex, 1);
 
     setKey('queue', queueList);
-
+    
     textModalButton();
-  }
-}
-
-export { textModalButton, changeWatchedQueueList };
+  };
+};

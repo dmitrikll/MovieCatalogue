@@ -1,9 +1,9 @@
 import TrendingFilmsApiService from './apiFilms/apiTrending';
 const refs = {
-  watchedBtn: document.querySelector('.header_btn-watched'),
-  queueBtn: document.querySelector('.header_btn-queue'),
-  list: document.querySelector('.film-gallery'),
-};
+    watchedBtn: document.querySelector('.header_btn-watched'),
+    queueBtn: document.querySelector('.header_btn-queue'),
+    list: document.querySelector('.film-gallery'),
+}
 const TrendingFilmsApiService = new TrendingApiService();
 refs.queueBtn.addEventListener('click', onWatchedBtnClick);
 
@@ -30,9 +30,11 @@ function onWatchedMarkup() {
   }
 }
 
+
+
 //  function markUpGallery(films) {
 //  refs.list.innerHTML = films.map(film=>{
-//
+//  
 // `<li class = "film-gallery__item" data-id="${id}">
 //            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
 //            <div class="film-gallery__info">
@@ -44,6 +46,7 @@ function onWatchedMarkup() {
 //           </li>`;
 //     })
 
+
 //   const placeholder = document.querySelector('js-search__form');
 //   if (isLocalStorageItemEmpty('queue')) {
 //     placeholder.style.display = 'block';
@@ -51,12 +54,13 @@ function onWatchedMarkup() {
 //     placeholder.style.display = 'none';
 //   }
 // }
-
-// function getMovieById(values) {
-//   return values.map(value => {
-//     return value.name;
-//   });
-// }
+    
+  
+  // function getMovieById(values) {
+  //   return values.map(value => {
+  //     return value.name;
+  //   });
+  // }
 
 function isLocalStorageItemEmpty(localStorageKey) {
   if (!localStorage.getItem(localStorageKey)) {
@@ -66,10 +70,12 @@ function isLocalStorageItemEmpty(localStorageKey) {
   return JSON.parse(localStorage.getItem(localStorageKey)).length === 0;
 }
 
+
+
 //Rerender after delete movie
 const btnAddToQueue = document.querySelector('.queue');
 btnAddToQueue.addEventListener('click', e => {
-  setTimeout(() => onWatchedMarkup(), 100);
+  setTimeout(() => onWatchedMarkup(), 100); 
 });
 
 function getActiveTab() {

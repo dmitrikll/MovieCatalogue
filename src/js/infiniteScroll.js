@@ -1,30 +1,62 @@
-import getRefs from './refs';
-const { filmGallery, guard } = getRefs();
+import { API_KEY } from './apiFilms/apiKey';
+import { BASE_URL } from './apiFilms/baseUrl';
 
-import { fetchSearchQuery, fetchGenres } from './fetchMoviesAPIService';
-import { markUpGallery } from './renderFilmList';
+import fetchMovies from './apiFilms/fetchMovies';
+
+import { markUpGallery } from './films';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import axios from 'axios';
+import throttle from 'lodash.throttle';
+import { disableLoader, displayLoader } from './spinner';
 
-async function fetchInfiniteResults(query, page) {
-  const perPage = 20;
+const filmGallery = document.querySelector('.film-gallery');
 
-  isFetching = true;
+export let scrollListener = null;
 
-  const fetchedMovies = await fetchSearchQuery(query, page);
-  const genres = await fetchGenres();
-  const totalResults = await fetchedMovies.data.total_results;
+export default function infiniteScroll(query, page, per_page = 20) {
+  let triggered = false;
 
-  if (perPage * page >= totalResults) {
-    Notify.info('You have reached the end of search results.');
-    observer.unobserve(guard);
-  }
+  window.addEventListener(
+    'scroll',
+    (scrollListener = throttle(async () => {
+      const height = document.body.offsetHeight;
+      const screenHeight = window.innerHeight;
+      const scrolled = window.scrollY;
+      const threshold = height - screenHeight / 3;
+      const position = scrolled + screenHeight;
 
-  filmGallery.insertAdjacentHTML(
-    'beforeend',
-    markUpGallery(fetchedMovies.data.results, genres)
+      if (position < threshold || triggered) {
+        return;
+      }
+
+      triggered = true;
+      page += 1;
+
+      //Place for spinner
+      displayLoader()
+      const fetchedMovies = await fetchMovies(query, page);
+      const genres = await axios(
+        `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
+      );
+      disableLoader()
+      
+
+      const total_results = await fetchedMovies.data.total_results;
+
+      filmGallery.insertAdjacentHTML(
+        'beforeend',
+        markUpGallery(fetchedMovies.data.results, genres.data.genres)
+      );
+
+      if (per_page * page >= total_results) {
+        Notify.info('You have reached the end of search results.');
+
+        triggered = true;
+        return;
+      }
+
+      triggered = false;
+    }, 300))
   );
-  isFetching = false;
 }
-
-export { observer, fetchInfiniteResults };
