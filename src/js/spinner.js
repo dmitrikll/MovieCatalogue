@@ -7,15 +7,17 @@ const container = document.querySelector('body')
 // });
 
 export function displayLoader() {
-    // container.classList.add('.loader-background');
-    // container.insertAdjacentHTML('afterbegin', '<div class="loader"></div>');
-    document.querySelector('.loader').classList.remove('disable');
+    const loader = document.querySelector('.loader');
+    if (loader)
+        loader.classList.remove('disable');
 }
 
 export function disableLoader() {
-    setTimeout(() => {
-        document.querySelector('.loader').classList.add('disable');    
-    }, 400);
+    // setTimeout(() => {
+        const loader = document.querySelector('.loader');
+        if (loader)
+            loader.classList.add('disable');
+    // }, 1400);
     // container.classList.add('.loader-background');
     
 }
