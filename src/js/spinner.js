@@ -7,15 +7,13 @@ const container = document.querySelector('body')
 // });
 
 export function displayLoader() {
-    // container.classList.add('.loader-background');
-    // container.insertAdjacentHTML('afterbegin', '<div class="loader"></div>');
     document.querySelector('.loader').classList.remove('disable');
 }
 
 export function disableLoader() {
-    setTimeout(() => {
+    // setTimeout(() => {
         document.querySelector('.loader').classList.add('disable');    
-    }, 400);
+    // }, 400);
     // container.classList.add('.loader-background');
     
 }
