@@ -1,25 +1,19 @@
- import TrendingFilmsApiService from './apiFilms/apiTrending';
-const refs = {
-    watchedBtn: document.querySelector('.header_btn-watched'),
-    queueBtn: document.querySelector('.header_btn-queue'),
-};
+import getRefs from './refs';
+const { watchedBtn, queueBtn } = getRefs();
 
- const TrendingFilmsApiService = new TrendingApiService;
+onWatchedMarkup();
 
- onWatchedMarkup();
+watchedBtn.addEventListener('click', onWatchedBtnClick);
 
- refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
- 
- function onWatchedBtnClick() {
-    // refs.queueBtn.classList.remove('header-active-button');
-    refs.watchedBtn.classList.add('header-active-button');
-    onWatchedMarkup();
-  }
-  
+function onWatchedBtnClick() {
+  watchedBtn.classList.add('header-active-button');
+  onWatchedMarkup();
+}
+
 function onWatchedMarkup() {
-    if (getActiveTab() !== 'watched') {
-      return;
-    }
+  if (getActiveTab() !== 'watched') {
+    return;
+  }
 }
 
 function getActiveTab() {
@@ -29,4 +23,3 @@ function getActiveTab() {
     ? 'watched'
     : 'queue';
 }
-
