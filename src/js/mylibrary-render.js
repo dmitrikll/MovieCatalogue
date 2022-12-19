@@ -22,5 +22,5 @@ export function renderMyLibrary({
     </div>
     </li>`;
 
-  myLibraryList.insertAdjacentHTML('afterend', markup);
+  myLibraryList.insertAdjacentHTML('afterbegin', markup);
 }
