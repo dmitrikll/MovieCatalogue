@@ -1,11 +1,10 @@
 import { getMovieById } from "./get-movie-by-id";
 import { getKey } from "./modal-button-localstorage";
+import { renderMyLibrary } from "./mylibrary-render";
 
 let watchedIdList = [];
 let queueIdList = [];
 let fullIdList = [];
-
-// ! ДГ - renderMyLibrary() - функції ще нема, треба написати та імпортувати / ренедер сторінки
 
 export function inWatchedQueueLocalStorage() {
     if (getKey('watched')) {
