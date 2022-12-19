@@ -1,34 +1,40 @@
-import getRefs from './refs';
-const { filmGallery, watchedBtn, queueBtn } = getRefs();
-
-onWatchedMarkup();
-
-watchedBtn.addEventListener('click', onWatchedBtnClick);
+import TrendingFilmsApiService from './apiFilms/apiTrending';
+const refs = {
+    watchedBtn: document.querySelector('.header_btn-watched'),
+    queueBtn: document.querySelector('.header_btn-queue'),
+    list: document.querySelector('.film-gallery'),
+}
+const TrendingFilmsApiService = new TrendingApiService();
+refs.queueBtn.addEventListener('click', onWatchedBtnClick);
 
 function onWatchedBtnClick() {
-  queueBtn.classList.remove('header-active-button');
-  watchedBtn.classList.add('header-active-button');
+  refs.watchedBtn.classList.remove('header-active-button');
+  refs.queueBtn.classList.add('header-active-button');
   onWatchedMarkup();
 }
-
 function onWatchedMarkup() {
-  if (getActiveTab() !== 'watched') {
+  console.log(getActiveTab());
+
+  if (getActiveTab() !== 'queue') {
     return;
   }
-  const filmsFromLocalStorage = JSON.parse(localStorage.getItem('watched'));
+
+  const filmsFromLocalStorage = JSON.parse(localStorage.getItem('queue'));
 
   if (filmsFromLocalStorage) {
     topMoviesMarkUp(filmsFromLocalStorage);
   } else {
-    const placeholder = document.querySelector('.js-search__form');
+    const placeholder = document.querySelector('.placeholder');
     placeholder.style.display = 'block';
-    filmGallery.innerHTML = '';
+    refs.list.innerHTML = '';
   }
 }
 
+
+
 //  function markUpGallery(films) {
 //  refs.list.innerHTML = films.map(film=>{
-//
+//  
 // `<li class = "film-gallery__item" data-id="${id}">
 //            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
 //            <div class="film-gallery__info">
@@ -40,6 +46,7 @@ function onWatchedMarkup() {
 //           </li>`;
 //     })
 
+
 //   const placeholder = document.querySelector('js-search__form');
 //   if (isLocalStorageItemEmpty('queue')) {
 //     placeholder.style.display = 'block';
@@ -47,12 +54,13 @@ function onWatchedMarkup() {
 //     placeholder.style.display = 'none';
 //   }
 // }
-
-// function getMovieById(values) {
-//   return values.map(value => {
-//     return value.name;
-//   });
-// }
+    
+  
+  // function getMovieById(values) {
+  //   return values.map(value => {
+  //     return value.name;
+  //   });
+  // }
 
 function isLocalStorageItemEmpty(localStorageKey) {
   if (!localStorage.getItem(localStorageKey)) {
@@ -62,10 +70,12 @@ function isLocalStorageItemEmpty(localStorageKey) {
   return JSON.parse(localStorage.getItem(localStorageKey)).length === 0;
 }
 
+
+
 //Rerender after delete movie
-const btnAddToWatch = document.querySelector('.wached');
-btnAddToWatch.addEventListener('click', e => {
-  setTimeout(() => onWatchedMarkup(), 100);
+const btnAddToQueue = document.querySelector('.queue');
+btnAddToQueue.addEventListener('click', e => {
+  setTimeout(() => onWatchedMarkup(), 100); 
 });
 
 function getActiveTab() {

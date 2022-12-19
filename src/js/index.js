@@ -5,3 +5,5 @@ import './movieSearchService';
 import './infiniteScroll';
 import './modal';
 import './modal-team';
+import './login';
+import './theme';

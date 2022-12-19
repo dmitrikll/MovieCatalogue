@@ -11,8 +11,9 @@
 @import './base/section';
 @import './base/mixin';
 @import './base/loader';
+@import './base/theme';
 // components
-
+@import './components/pagination';
 // layout
 @import './layout/header';
 @import './layout/mylibrary-header';
@@ -20,4 +21,6 @@
 @import './layout/footer';
 @import './layout/modal';
 @import './layout/my-team-modal';
+@import './layout/login';
 // utils
+

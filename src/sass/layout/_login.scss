@@ -1,0 +1,121 @@
+.login {
+  height: 400px;
+  width: 280px;
+  background-color: #ffffff77;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 50%;
+  backdrop-filter: blur(10px);
+  border: 2px solid #ffffff1a;
+  border-radius: 10px;
+  box-shadow: 0 0 40px #08071099;
+  padding: 20px;
+  color: #000;
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &.hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  &__control {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  &__current-user {
+    margin-left: auto;
+    color: #fff;
+  }
+
+  &__open-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32x;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__radio {
+    display: none;
+  }
+
+  &__radio + label {
+    display: inline;
+    align-items: center;
+    color: #333;
+    font-size: 24px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__radio:checked + label {
+    color: #ff001bcc;
+  }
+
+  &__label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+  }
+
+  &__input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0 10px;
+    background-color: #ffffff;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+  }
+
+  &__submit-button {
+    width: 100%;
+    background-color: #ffffff;
+    color: #000;
+    margin-top: 60px;
+    padding: 15px 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

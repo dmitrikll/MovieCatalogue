@@ -7,6 +7,7 @@ function getRefs() {
     queueBtn: document.querySelector('.header_btn-queue'),
     backdrop: document.querySelector('.backdrop'),
     closeButton: document.querySelector('.close-button'),
+    containerPagination: document.getElementById('pagination'),
   };
 }
 

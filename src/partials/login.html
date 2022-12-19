@@ -1,0 +1,40 @@
+<div class="login__backdrop hidden">
+  <div class="login">
+    <button type="button" class="login__close-button">
+      <svg width="32" height="32">
+        <use href="./images/svg/symbol-defs.svg#icon-cross"></use>
+      </svg>
+    </button>
+
+    <form class="login__form">
+      <div class="login__wrapper">
+        <input
+          type="radio"
+          name="mode"
+          id="log-in"
+          value="log-in"
+          class="login__radio"
+          checked
+        />
+        <label for="log-in">Log In</label>
+        <span style="font-size: 24px">|</span>
+        <input
+          type="radio"
+          name="mode"
+          id="sign-up"
+          value="sign-up"
+          class="login__radio"
+        />
+        <label for="sign-up">Sign Up</label>
+      </div>
+
+      <label for="email" class="login__label">E-mail</label>
+      <input type="email" id="email" class="login__input" />
+
+      <label for="password" class="login__label">Password</label>
+      <input type="password" id="password" class="login__input" />
+
+      <button type="submit" class="login__submit-button">Log In</button>
+    </form>
+  </div>
+</div>
