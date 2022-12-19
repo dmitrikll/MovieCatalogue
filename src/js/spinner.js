@@ -7,13 +7,17 @@ const container = document.querySelector('body')
 // });
 
 export function displayLoader() {
-    document.querySelector('.loader').classList.remove('disable');
+    const loader = document.querySelector('.loader');
+    if (loader)
+        loader.classList.remove('disable');
 }
 
 export function disableLoader() {
     // setTimeout(() => {
-        document.querySelector('.loader').classList.add('disable');    
-    // }, 400);
+        const loader = document.querySelector('.loader');
+        if (loader)
+            loader.classList.add('disable');
+    // }, 1400);
     // container.classList.add('.loader-background');
     
 }
