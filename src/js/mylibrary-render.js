@@ -13,7 +13,7 @@ export function renderMyLibrary({
   id,
 }) {
   const markup = `
-    <li class="film-gallery__item">
+    <li class="film-gallery__item" data-id="${id}">
     <img class="film-gallery__image" src="https://image.tmdb.org/t/p/w500${poster_path}" alt="Movie poster" loading="lazy">
     <div class="film-gallery__info">
         <p class="film-gallery__title">${original_title}</p>
