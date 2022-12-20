@@ -21,10 +21,6 @@ function getRefs() {
     openModalBtn: document.querySelector('.modal-open'),
     closeModalBtn: document.querySelector('.modal__close'),
     modal: document.querySelector('.backdrop-team'),
-    btnRecommendedFilms: document.querySelector(
-      '.modal__btn__recommended-films'
-    ),
-    sectionWorker: document.querySelector('.worker'),
 
     loginOpenBtn: document.querySelector('.login__open-button'),
     loginBackdrop: document.querySelector('.login__backdrop'),
