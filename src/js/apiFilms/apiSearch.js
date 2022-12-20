@@ -8,11 +8,10 @@ const { containerPagination } = getRefs();
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 
-const searchForm = document.querySelector('.js-search__form');
-const searchInput = document.querySelector('.search_input');
-const filmGallery = document.querySelector('.film-gallery');
+import getRefs from '../refs';
+const { filmGallery, searchInput, placeholder } = getRefs();
 
-searchForm.addEventListener('submit', async (e, page = 1, per_page = 20) => {
+placeholder.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   e.preventDefault();
   containerPagination.classList.add('hide');
 

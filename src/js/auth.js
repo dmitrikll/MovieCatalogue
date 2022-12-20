@@ -10,6 +10,10 @@ Notify.init({
   position: 'center-top',
 });
 
+import getRefs from './refs';
+const { loginBackdrop, loginForm, loginEmail, loginPassword, currentUser } =
+  getRefs();
+
 const firebaseConfig = {
   apiKey: 'AIzaSyAqu3lJCaapNyYKDGfS1HPnGF0Y5sU0_JE',
   authDomain: 'nezlamniprj.firebaseapp.com',
@@ -21,12 +25,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-const currentUser = document.querySelector('.login__current-user');
-const loginBackdrop = document.querySelector('.login__backdrop');
-const loginForm = document.querySelector('.login__form');
-const loginEmail = document.getElementById('email');
-const loginPassword = document.getElementById('password');
 
 if (localStorage.getItem('currentUser')) {
   currentUser.textContent = localStorage.getItem('currentUser');
