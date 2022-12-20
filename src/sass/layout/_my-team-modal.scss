@@ -1,11 +1,35 @@
 .modal__close {
   position: absolute;
   top: 50%;
-  right: 7%;
+  right: 2%;
+  fill: aliceblue;
   transform: translate(0, -50%);
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    right: 5%;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 6.5%;
+  }
+}
+
+.modal__btn__recommended-films {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  color: aliceblue;
+  font-size: 20px;
+  transform: translate(0, -50%);
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
 }
 .modal-open {
   color: $button-and-after;
+  border: none;
+  font-size: 19px;
 }
 .no-scroll {
   overflow: hidden;
@@ -41,6 +65,8 @@
   width: 320px;
   height: 530px;
 
+  padding-bottom: 30px;
+
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     width: 700px;
     height: 550px;
@@ -54,6 +80,7 @@
 .modal__team_title {
   border: none;
   position: sticky;
+  z-index: 10;
   top: 0;
   height: 40px;
   background-image: url(../images/header/desktop/header1x.png);
@@ -66,13 +93,18 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  margin-bottom: 15px;
+
+  @media screen and (min-width: 768px) {
+    height: 60px;
+  }
 }
 
 .modal__title {
   color: $title-color;
 }
+
 .worker {
+  margin-top: 25px;
   @media screen and (min-width: 768px) {
     width: 570px;
     margin-left: auto;
@@ -92,9 +124,15 @@
     width: 270px;
     background-color: $modal-bg;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 6px;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     @media screen and (min-width: 1200px) {
       width: 200px;
@@ -102,7 +140,7 @@
   }
   &__card {
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
   }
   &__name {
     margin-bottom: 10px;
@@ -113,7 +151,31 @@
     text-align: center;
     color: $modal-seconds-text;
   }
+  // &__recommended {
+  // }
+  &__recommended__title {
+    color: aliceblue;
+    border: none;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    height: 40px;
+    background-image: url(../images/header/desktop/header1x.png);
+    transform: scaleY(-1);
+    background-position: center;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  &__recommended__title-scale {
+    transform: scaleY(-1);
+  }
 }
+
 .social__link--color {
   background-color: transparent;
   color: $film-genre;
@@ -147,12 +209,21 @@
     border-radius: 50%;
     width: 44px;
     height: 44px;
-
-    // @include animation();
-    // transition-property: color, background-color;
   }
 
   &__icon {
     fill: currentColor;
   }
+}
+
+::-webkit-scrollbar {
+  width: 18px; /* ширина для вертикального скролла */
+  background-color: $modal-seconds-text;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: $button-and-after;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #f3faf7;
 }
