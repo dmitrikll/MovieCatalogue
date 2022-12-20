@@ -3,6 +3,9 @@ function getRefs() {
     filmGallery: document.querySelector('.film-gallery'),
     guard: document.querySelector('.guard-js'),
     containerPagination: document.getElementById('pagination'),
+    watchedBtn: document.querySelector('.header_btn-watched'),
+    queueBtn: document.querySelector('.header_btn-queue'),
+    myLibraryList: document.querySelector('.mylibrary-film-gallery'),
   };
 }
 

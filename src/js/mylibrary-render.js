@@ -1,5 +1,4 @@
 const myLibraryList = document.querySelector('.mylibrary-film-gallery');
-console.log(myLibraryList);
 export function renderMyLibrary({
   genres,
   original_title,
