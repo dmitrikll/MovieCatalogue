@@ -1,11 +1,11 @@
 <div class="backdrop-team is-hidden">
   <div class="modal__team">
     <span class="modal__team_title">
-      <button type="button" class="modal__btn__recommended-films">
-        << recommended films >>
-      </button>
+      <svg class="modal__logo__nezlamni" width="160" height="160">
+        <use href="./images/symbol-defs.svg#icon-logo_nezlamni"></use>
+      </svg>
       <button type="button" class="modal__close">
-        <svg class="modal__close-icon" width="40" height="40">
+        <svg class="modal__close-icon" width="20" height="20">
           <use href="./images/symbol-defs.svg#icon-close"></use>
         </svg>
       </button>
@@ -913,6 +913,81 @@
           <picture>
             <source
               srcset="
+                ./images/foto-developer/worker-13-desk-min.jpg  1x,
+                ./images/foto-developer/worker-13-desk-min.webp 2x
+              "
+              media="(min-width:1200px)"
+            />
+            <source
+              srcset="./images/foto-developer/worker-13-tab-min.jpg 1x"
+              media="(min-width:768px)"
+            />
+            <source
+              srcset="./images/foto-developer/worker-13-mob-min.jpg 1x"
+              media="(min-width:320px)"
+            />
+            <img
+              class="worker__img"
+              src="./images/foto-developer/worker-13-desk-min.jpg"
+              width="270"
+              height="260"
+              alt="foto Developer"
+            />
+          </picture>
+          <div class="worker__card">
+            <h3 class="worker__name">Vadym Kolybchuk</h3>
+            <p class="worker__position">Developer</p>
+            <ul class="social">
+              <li class="social__svg">
+                <a class="social__link social__link--color" href="#">
+                  <svg class="social__icon" width="20px" height="20px">
+                    <use
+                      href="./images/svg/symbol-defs.svg#icon-linkedin"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__svg">
+                <a
+                  class="social__link social__link--color"
+                  href="https://www.facebook.com/kolibchyk"
+                  target="_blank"
+                >
+                  <svg class="social__icon" width="20px" height="20px">
+                    <use
+                      href="./images/svg/symbol-defs.svg#icon-facebook"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__svg">
+                <a class="social__link social__link--color" href="#">
+                  <svg class="social__icon" width="20px" height="20px">
+                    <use
+                      href="./images/svg/symbol-defs.svg#icon-instagram"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__svg">
+                <a
+                  class="social__link social__link--color"
+                  href="https://github.com/vadimvitamin"
+                  target="_blank"
+                >
+                  <svg class="social__icon" width="20px" height="20px">
+                    <use href="./images/svg/symbol-defs.svg#icon-github"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="worker__item">
+          <picture>
+            <source
+              srcset="
                 ./images/foto-developer/go-it-gesk.jpg  1x,
                 ./images/foto-developer/go-it-gesk.webp 2x
               "
@@ -1058,24 +1133,6 @@
             </ul>
           </div>
         </li>
-      </ul>
-    </section>
-    <section class="worker__recommended">
-      <span class="worker__recommended__title">
-        <h3 class="worker__recommended__title-scale">
-          Recommended movies from our team
-        </h3></span
-      >
-      <p class="worker__recommended-text">
-        Our development team also likes to watch movies and will be happy to
-        recommend movies to watch
-      </p>
-      <ul class="worker__list__films">
-        <li class="worker__item__film">fhdfhgfhgf</li>
-        <li class="worker__item__film">ghdfgdfgf</li>
-        <li class="worker__item__film">fgdfgdfg</li>
-        <li class="worker__item__film">fgdfgdf</li>
-        <li class="worker__item__film">fdhdhghfgsdg</li>
       </ul>
     </section>
   </div>

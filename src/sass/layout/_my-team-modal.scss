@@ -1,36 +1,39 @@
+.modal-open {
+  color: $button-and-after;
+  border: none;
+  font-size: 19px;
+}
+
+.modal__logo__nezlamni {
+  position: absolute;
+  top: -75%;
+  left: 5%;
+  fill: rgb(239, 152, 205);
+}
+
 .modal__close {
   position: absolute;
   top: 50%;
   right: 2%;
   fill: aliceblue;
+  border-color: antiquewhite;
   transform: translate(0, -50%);
   background-color: inherit;
   cursor: pointer;
-  border: none;
+  border-color: aliceblue;
+  border-radius: 50%;
+  border-block: floor($number: 3);
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     right: 5%;
   }
   @media screen and (min-width: 1280px) {
     right: 6.5%;
   }
+  &:hover {
+    scale: 1.1;
+  }
 }
 
-.modal__btn__recommended-films {
-  position: absolute;
-  top: 50%;
-  left: 2%;
-  color: aliceblue;
-  font-size: 20px;
-  transform: translate(0, -50%);
-  background-color: inherit;
-  cursor: pointer;
-  border: none;
-}
-.modal-open {
-  color: $button-and-after;
-  border: none;
-  font-size: 19px;
-}
 .no-scroll {
   overflow: hidden;
 }
@@ -73,11 +76,12 @@
   }
   @media screen and (min-width: 1280px) {
     width: 1180px;
-    height: 900px;
+    height: 700px;
   }
 }
 
 .modal__team_title {
+  font-size: 20px;
   border: none;
   position: sticky;
   z-index: 10;
@@ -151,29 +155,6 @@
     text-align: center;
     color: $modal-seconds-text;
   }
-  // &__recommended {
-  // }
-  &__recommended__title {
-    color: aliceblue;
-    border: none;
-    position: sticky;
-    z-index: 10;
-    top: 0;
-    height: 40px;
-    background-image: url(../images/header/desktop/header1x.png);
-    transform: scaleY(-1);
-    background-position: center;
-    background-size: cover;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  }
-  &__recommended__title-scale {
-    transform: scaleY(-1);
-  }
 }
 
 .social__link--color {
@@ -214,16 +195,4 @@
   &__icon {
     fill: currentColor;
   }
-}
-
-::-webkit-scrollbar {
-  width: 18px; /* ширина для вертикального скролла */
-  background-color: $modal-seconds-text;
-}
-
-/* ползунок скроллбара */
-::-webkit-scrollbar-thumb {
-  background-color: $button-and-after;
-  border-radius: 9em;
-  box-shadow: inset 1px 1px 10px #f3faf7;
 }
