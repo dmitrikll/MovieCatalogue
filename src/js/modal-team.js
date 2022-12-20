@@ -1,18 +1,5 @@
 import getRefs from './refs';
-const {
-  openModalBtn,
-  closeModalBtn,
-  modal,
-  body,
-  btnRecommendedFilms,
-  sectionWorker,
-} = getRefs();
-
-btnRecommendedFilms.addEventListener('click', toggleSection);
-
-function toggleSection() {
-  sectionWorker.classList.toggle('visually-hidden');
-}
+const { openModalBtn, closeModalBtn, modal, body } = getRefs();
 
 openModalBtn.addEventListener('click', toggleModal);
 closeModalBtn.addEventListener('click', toggleModal);
