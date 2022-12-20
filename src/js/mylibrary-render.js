@@ -1,5 +1,4 @@
 const myLibraryList = document.querySelector('.mylibrary-film-gallery');
-console.log(myLibraryList);
 export function renderMyLibrary({
   genres,
   original_title,
@@ -22,5 +21,5 @@ export function renderMyLibrary({
     </div>
     </li>`;
 
-  myLibraryList.insertAdjacentHTML('afterend', markup);
+  myLibraryList.insertAdjacentHTML('afterbegin', markup);
 }

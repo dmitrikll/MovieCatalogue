@@ -23,6 +23,10 @@ export function inWatchedQueueLocalStorage() {
   }
 }
 
+export function getFullListCount() {
+  return fullIdList.length;
+}
+
 export function inWatchedLocalStorage() {
   if (getKey('watched')) {
     watchedIdList = getKey('watched');
