@@ -109,3 +109,15 @@ margin: 0 auto;
    transition: transform 0.25s linear;
   transform: scale(1.03);
  }
+
+ .vote-average {
+  margin-left: 5px;
+  padding: 3px 12px;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+
+  color: #ffffff;
+  background-color: #ff6b08;
+
+  border-radius: 5px;
+}
