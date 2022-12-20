@@ -95,9 +95,8 @@ margin: 0 auto;
 }
   
   @media screen and (min-width: $min-tablet-size) {
-    &:not(:last-child){
-      margin-bottom: 0px;
-    }
+      margin: 0;
+
     flex-basis: calc((100% - 32px) / 2);
   }
   @media screen and (min-width: $min-desktop-size) {
