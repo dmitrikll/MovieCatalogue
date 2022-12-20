@@ -2,11 +2,7 @@
 .header{
     padding-top: 40px;
     padding-bottom: 84px;
-}
-.overlay-header {
     height: 230px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: rgba(0, 0, 0, 0.56);
     background-size: cover;
     background-position: center;
@@ -27,10 +23,8 @@
     (min-resolution: 2dppx) {
         background-image: url('../images/header/tablet/header@2x.png');
     }
-}
 
-@media screen and (max-width: 320px) {
-    .overlay-header {
+  @media screen and (max-width: 320px) {
         height: 230px;
         margin-left: auto;
         margin-right: auto;
@@ -42,14 +36,14 @@
     @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-        .overlay-header{
+
             height: 230px;
             margin-left: auto;
             margin-right: auto;
             background-size: cover;
             background-position: center;
             background-image: url('../images/header/mobile/header@2x.png');
-        }
+        
     }
 }
 //==================================================================
