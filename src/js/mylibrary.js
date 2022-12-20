@@ -6,4 +6,4 @@ import './myLibraryFunction';
 // import './pagination';
 import './modal-team';
 // import './login';
-// import './theme';
+import './theme';
