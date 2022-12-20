@@ -15,7 +15,7 @@ placeholder.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   e.preventDefault();
   const searchQuery = e.currentTarget.elements.query.value;
   if (!searchQuery.trim()) {
-    filmGallery.innerHTML = '';
+    // filmGallery.innerHTML = '';
     Notify.failure('The field cannot be empty. Enter a valid request');
   }
   containerPagination.classList.add('hide');
@@ -26,7 +26,7 @@ placeholder.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   }
   // observer.disconnect();
   window.removeEventListener('scroll', scrollListener);
-  filmGallery.innerHTML = '';
+  // filmGallery.innerHTML = '';
 
   //Place for spinner
 
@@ -46,6 +46,7 @@ placeholder.addEventListener('submit', async (e, page = 1, per_page = 20) => {
     `Hooray! We found ${fetchedMovies.data.total_results} movies.`
   );
 
+  filmGallery.innerHTML = '';
   filmGallery.insertAdjacentHTML(
     'beforeend',
     markUpGallery(fetchedMovies.data.results, genres.data.genres)

@@ -4,6 +4,7 @@ import { displayLoader, disableLoader } from './spinner';
 import getRefs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import defaultPicture from '../images/defaultPicture.jpg'
 
 const { filmGallery, containerPagination } = getRefs();
 const trending = new TrendingFilmsApiService();
@@ -77,25 +78,40 @@ pagination.on('afterMove', async event => {
 
 function markUpGallery(filmsArr, genres) {
   return filmsArr
-    .map(({ id, title, release_date, poster_path, genre_ids }) => {
-      let imgPath = `../images/api/poster.jpg`;
+    .map(({ id, title = 'Unknown', release_date, poster_path, genre_ids }) => {
+      let imgPath = defaultPicture;
       if (poster_path) {
         imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
       }
 
-      const releaseDate = new Date(`${release_date}`);
-      const releaseYear = releaseDate.getFullYear();
-      const genresList = genres
+      let releaseYear = 0;
+      if (release_date) {
+        const releaseDate = new Date(`${release_date}`);
+        releaseYear = releaseDate.getFullYear();
+      } else {
+        releaseYear = 'No information';
+      }
+      let genresList = '';
+      if (genre_ids.length) {
+        genresList = genres
         .filter(genre => genre_ids.includes(genre.id))
-        .map(arr => arr.name);
+          .map(arr => arr.name);
+        genresList = Object.values(genresList);
+         if (genresList.length > 2) {
+          genresList =
+          genresList.slice(0, 2).join(', ') + ', Other';
+        } else if (genresList.length > 0 && genresList.length <= 2) {
+           genresList = genresList.join(', ');
+        } 
+      } else {
+        genresList = 'No information';
+      }
 
       return `<li class = "film-gallery__item" data-id="${id}">
            <img class="film-gallery__image" src="${imgPath}" alt="${title}" loading="lazy"/>
            <div class="film-gallery__info">
             <p class="film-gallery__title">${title.toUpperCase()}</p>
-            <p class="film-gallery__text">${Object.values(genresList).join(
-              ', '
-            )} | ${releaseYear}</p>
+            <p class="film-gallery__text">${genresList} | ${releaseYear}</p>
           </div>
           </li>`;
     })
