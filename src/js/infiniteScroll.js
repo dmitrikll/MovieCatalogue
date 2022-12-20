@@ -10,7 +10,8 @@ import axios from 'axios';
 import throttle from 'lodash.throttle';
 import { disableLoader, displayLoader } from './spinner';
 
-const filmGallery = document.querySelector('.film-gallery');
+import getRefs from './refs';
+const { filmGallery } = getRefs();
 
 export let scrollListener = null;
 
@@ -34,13 +35,12 @@ export default function infiniteScroll(query, page, per_page = 20) {
       page += 1;
 
       //Place for spinner
-      displayLoader()
+      displayLoader();
       const fetchedMovies = await fetchMovies(query, page);
       const genres = await axios(
         `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`
       );
-      disableLoader()
-      
+      disableLoader();
 
       const total_results = await fetchedMovies.data.total_results;
 

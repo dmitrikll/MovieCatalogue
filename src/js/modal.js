@@ -1,14 +1,14 @@
 import { BASE_URL } from './apiFilms/baseUrl';
 import { API_KEY } from './apiFilms/apiKey';
 // ! ДГ - імпортував функцію
-import { changeWatchedQueueList, textModalButton } from './modal-button-localstorage'
+import {
+  changeWatchedQueueList,
+  textModalButton,
+} from './modal-button-localstorage';
+import getRefs from './refs';
+const { filmGallery, modalWindow, backdrop, closeButton } = getRefs();
 
-const movieList = document.querySelector('.film-gallery');
-const modalWindow = document.querySelector('.modal');
-const backdrop = document.querySelector('.backdrop');
-const closeButton = document.querySelector('.close-button');
-
-movieList.addEventListener('click', onModalWindowOpen);
+filmGallery.addEventListener('click', onModalWindowOpen);
 closeButton.addEventListener('click', onModalWindowClose);
 backdrop.addEventListener('click', onBackdropClick);
 
@@ -28,16 +28,16 @@ function onModalWindowOpen(e) {
   } else if (e.target.closest('li')) {
     const movieId = e.target.closest('li').dataset.id;
     const information = document.querySelector('.information');
-  if (information) {
-    information.remove();
+    if (information) {
+      information.remove();
     }
-    
+
     fetchMovieDetails(movieId)
-    .then(movie => renderMovieModal(movie))
+      .then(movie => renderMovieModal(movie))
       .catch(error => console.log(error));
     document.body.style.overflow = 'hidden';
-  backdrop.classList.remove('is-hidden');
-  document.addEventListener('keydown', onEscClose);
+    backdrop.classList.remove('is-hidden');
+    document.addEventListener('keydown', onEscClose);
   }
 }
 
@@ -52,7 +52,7 @@ function renderMovieModal({
   vote_count,
   id, //! ДГ - додав ключ
 }) {
-    const markup = `<div class="information">
+  const markup = `<div class="information">
   <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="Movie poster"/>
     <div class="movie-details">
       <h3 class="movie-heading">${title}</h3>

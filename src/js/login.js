@@ -2,13 +2,16 @@ import { logIn, signUp } from './auth';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const loginOpenBtn = document.querySelector('.login__open-button');
-const loginBackdrop = document.querySelector('.login__backdrop');
-const loginCloseBtn = document.querySelector('.login__close-button');
-const loginForm = document.querySelector('.login__form');
-const loginEmail = document.getElementById('email');
-const loginPassword = document.getElementById('password');
-const loginSubmitBtn = document.querySelector('.login__submit-button');
+import getRefs from './refs';
+const {
+  loginOpenBtn,
+  loginBackdrop,
+  loginCloseBtn,
+  loginForm,
+  loginEmail,
+  loginPassword,
+  loginSubmitBtn,
+} = getRefs();
 
 loginOpenBtn.addEventListener('click', () => {
   loginForm.reset();

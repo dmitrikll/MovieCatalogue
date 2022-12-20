@@ -1,4 +1,6 @@
-const myLibraryList = document.querySelector('.mylibrary-film-gallery');
+import getRefs from './refs';
+const { myLibraryList } = getRefs();
+
 export function renderMyLibrary({
   genres,
   original_title,

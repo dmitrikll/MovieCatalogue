@@ -1,4 +1,5 @@
-const modalWindow = document.querySelector('.modal');
+import getRefs from './refs';
+const { modalWindow } = getRefs();
 
 export function renderMovieModal({
   genres,
