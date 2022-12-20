@@ -39,6 +39,10 @@ export function inWatchedLocalStorage() {
   }
 }
 
+export function getWatchedListCount() {
+  return watchedIdList.length;
+}
+
 export function inQueueLocalStorage() {
   if (getKey('queue')) {
     queueIdList = getKey('queue');
@@ -49,4 +53,8 @@ export function inQueueLocalStorage() {
       .then(movie => renderMyLibrary(movie))
       .catch(error => console.log(error));
   }
+}
+
+export function getQueueListCount() {
+  return queueIdList.length;
 }
