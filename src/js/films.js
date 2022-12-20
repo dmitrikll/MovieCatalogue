@@ -4,7 +4,7 @@ import { displayLoader, disableLoader } from './spinner';
 import getRefs from './refs';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import defaultPicture from '../images/defaultPicture.jpg'
+import defaultPicture from '../images/defaultPicture.png'
 
 const { filmGallery, containerPagination } = getRefs();
 const trending = new TrendingFilmsApiService();
@@ -79,9 +79,11 @@ pagination.on('afterMove', async event => {
 function markUpGallery(filmsArr, genres) {
   return filmsArr
     .map(({ id, title = 'Unknown', release_date, poster_path, genre_ids }) => {
-      let imgPath = defaultPicture;
+      let imgPath = '';
       if (poster_path) {
         imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+      } else {
+        imgPath = defaultPicture;
       }
 
       let releaseYear = 0;

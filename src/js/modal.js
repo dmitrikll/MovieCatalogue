@@ -1,5 +1,7 @@
 import { BASE_URL } from './apiFilms/baseUrl';
 import { API_KEY } from './apiFilms/apiKey';
+import defaultPicture from '../images/defaultPicture.png'
+
 // ! ДГ - імпортував функцію
 import {
   changeWatchedQueueList,
@@ -43,17 +45,36 @@ function onModalWindowOpen(e) {
 
 function renderMovieModal({
   genres,
-  original_title,
+  original_title = 'Unknown',
   overview,
   popularity,
   poster_path,
-  title,
-  vote_average,
-  vote_count,
+  title = 'Unknown',
+  vote_average = 0,
+  vote_count = 0,
   id, //! ДГ - додав ключ
 }) {
+  let genresList = '';
+  if (genres.length) {
+    genresList = genres.map(genre => genre.name).join(', ');
+  } else {
+    genresList = 'No information';
+  }
+  let imgPath = '';
+  if (poster_path) {
+    imgPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+  } else {
+    imgPath = defaultPicture;
+  }
+
+  let descr = '';
+  if (overview) {
+    descr = overview;
+  } else {
+    descr = 'No description';
+  }
   const markup = `<div class="information">
-  <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="Movie poster"/>
+  <img src="${imgPath}" alt="Movie poster"/>
     <div class="movie-details">
       <h3 class="movie-heading">${title}</h3>
       <ul class="movie-list-info">
@@ -75,13 +96,11 @@ function renderMovieModal({
         </li>
         <li class="movie-list-info__item">
           <p class="movie-testimonial">Genre</p>
-          <p class="movie-mark">${genres
-            .map(genre => genre.name)
-            .join(', ')}</p>
+          <p class="movie-mark">${genresList}</p>
         </li>
       </ul>
       <p class="about">About</p>
-      <p class="about-descr">${overview}</p>
+      <p class="about-descr">${descr}</p>
       <div class="button-wrapper">
       <button class="button btn-add-to-watched modal__active-btn" type="button">Add to watched</button>
       <button class="button btn-add-to-queue" type="button">Add to queue</button>
