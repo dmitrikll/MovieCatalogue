@@ -1,10 +1,12 @@
 import getRefs from './refs';
+const { filmGallery } = getRefs();
 import { getFullListCount } from './mylibrary-buttons-function';
 import { getWatchedListCount } from './mylibrary-buttons-function';
 import { getQueueListCount } from './mylibrary-buttons-function';
 import myLIbraryImg from '../images/myLibrary-img.jpg';
 import watchedDefault from '../images/watchedDefault.jpg';
 import queueDefault from '../images/queueDefault.jpg';
+import { onModalWindowOpen } from './modal';
 
 import {
   inWatchedQueueLocalStorage,
@@ -20,6 +22,7 @@ const markup = `<li class="mylibrary-img" role="presentation"><img src="${myLIbr
 
 if (getFullListCount() == 0) {
   getRefs().myLibraryList.innerHTML = markup;
+  filmGallery.removeEventListener('click', onModalWindowOpen);
 }
 
 function onWatchedBtn() {
@@ -31,7 +34,8 @@ function onWatchedBtn() {
   inWatchedLocalStorage();
   const markup = `<li class="mylibrary-img" role="presentation"><img src="${watchedDefault}"></img></li>`;
   if (getWatchedListCount() == 0) {
-  getRefs().myLibraryList.innerHTML = markup;   
+    getRefs().myLibraryList.innerHTML = markup;  
+  filmGallery.removeEventListener('click', onModalWindowOpen);  
 }
 }
 
@@ -44,6 +48,7 @@ function onQueueBtn() {
   inQueueLocalStorage();
   const markup = `<li class="mylibrary-img" role="presentation"><img src="${queueDefault}"></img></li>`;
   if (getQueueListCount() == 0) {
-  getRefs().myLibraryList.innerHTML = markup;   
+    getRefs().myLibraryList.innerHTML = markup; 
+  filmGallery.removeEventListener('click', onModalWindowOpen);  
 }
 }
