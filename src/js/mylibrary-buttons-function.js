@@ -1,6 +1,9 @@
+import getRefs from './refs';
+const { filmGallery } = getRefs();
 import { getMovieById } from './get-movie-by-id';
 import { getKey } from './modal-button-localstorage';
 import { renderMyLibrary } from './mylibrary-render';
+import { onModalWindowOpen } from './modal';
 
 let watchedIdList = [];
 let queueIdList = [];
@@ -20,6 +23,7 @@ export function inWatchedQueueLocalStorage() {
     getMovieById(id)
       .then(movie => renderMyLibrary(movie))
       .catch(error => console.log(error));
+    filmGallery.addEventListener('click', onModalWindowOpen);
   }
 }
 
@@ -36,6 +40,7 @@ export function inWatchedLocalStorage() {
     getMovieById(id)
       .then(movie => renderMyLibrary(movie))
       .catch(error => console.log(error));
+    filmGallery.addEventListener('click', onModalWindowOpen);
   }
 }
 
@@ -52,6 +57,7 @@ export function inQueueLocalStorage() {
     getMovieById(id)
       .then(movie => renderMyLibrary(movie))
       .catch(error => console.log(error));
+    filmGallery.addEventListener('click', onModalWindowOpen);
   }
 }
 

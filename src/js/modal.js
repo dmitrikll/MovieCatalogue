@@ -25,7 +25,7 @@ async function fetchMovieDetails(movieId) {
   return await response.json();
 }
 
-function onModalWindowOpen(e) {
+export function onModalWindowOpen(e) {
   if (!e.target.closest('li')) {
     return;
   } else if (e.target.closest('li')) {
