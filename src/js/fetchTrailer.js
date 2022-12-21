@@ -19,14 +19,18 @@ async function fetchTrailer(id) {
 function onPlayButtonClick() {
   const id = document.querySelector('.information').dataset.id;
 
-  fetchTrailer(id)
-      .then(({ results }) => {
-      const trailer = results.find(result => result.type === 'Trailer');
-      const movieKey = trailer.key;
-      const trailerSrc = `https://www.youtube.com/embed/${movieKey}`;
-    renderTrailer(trailerSrc);
+fetchTrailer(id)
+    .then(({ results }) => {
+      if (results.length) {
+        const trailer = results.find(result => result.type === 'Trailer');
+        const movieKey = trailer.key;
+        const trailerSrc = `https://www.youtube.com/embed/${movieKey}`;
+        renderTrailer(trailerSrc);
+      } else {
+        renderTrailerDefault();
+      }
     })
-        .catch(error => console.log(error));
+    .catch(error => console.log(error));
   trailerBackdrop.classList.remove('is-hidden');
   document.addEventListener('keydown', onTrailerEscClose);
   document.removeEventListener('keydown', onEscClose);}
@@ -42,6 +46,14 @@ function renderTrailer(src) {
         allowfullscreen
       ></iframe>`;
 
+  trailerContainer.innerHTML = markup;
+}
+
+function renderTrailerDefault() {
+  const markup = `<img
+        src="https://media.tenor.com/zZ40mt2KOFoAAAAC/crying-mei-lee.gif"
+        alt="Panda crying"
+      />`;
   trailerContainer.innerHTML = markup;
 }
 
