@@ -1,5 +1,6 @@
 import { BASE_URL } from './apiFilms/baseUrl';
 import { API_KEY } from './apiFilms/apiKey';
+import { onPlayButtonClick } from './fetchTrailer';
 import defaultPicture from '../images/defaultPicture.png'
 
 // ! ДГ - імпортував функцію
@@ -35,7 +36,11 @@ function onModalWindowOpen(e) {
     }
 
     fetchMovieDetails(movieId)
-      .then(movie => renderMovieModal(movie))
+      .then(movie => {
+        renderMovieModal(movie);
+        const playButton = document.querySelector('.circle');
+        playButton.addEventListener('click', onPlayButtonClick);
+      })
       .catch(error => console.log(error));
     document.body.style.overflow = 'hidden';
     backdrop.classList.remove('is-hidden');
@@ -73,8 +78,14 @@ function renderMovieModal({
   } else {
     descr = 'No description';
   }
-  const markup = `<div class="information">
+  const markup = `<div class="information" data-id="${id}"><div class="trailer">
   <img src="${imgPath}" alt="Movie poster"/>
+  <div class="overlay">
+    <div class="circle"><svg width="60" height="60" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
+        </svg></div>
+    </div>
+  </div>
     <div class="movie-details">
       <h3 class="movie-heading">${title}</h3>
       <ul class="movie-list-info">
@@ -126,7 +137,7 @@ function onBackdropClick(e) {
   }
 }
 
-function onEscClose(e) {
+export function onEscClose(e) {
   if (e.code === 'Escape') {
     document.removeEventListener('keydown', onEscClose);
     onModalWindowClose();
