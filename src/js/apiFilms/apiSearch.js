@@ -13,14 +13,16 @@ const { filmGallery, searchInput, placeholder } = getRefs();
 
 placeholder.addEventListener('submit', async (e, page = 1, per_page = 20) => {
   e.preventDefault();
-  const searchQuery = e.currentTarget.elements.query.value;
-  if (!searchQuery.trim()) {
-    // filmGallery.innerHTML = '';
-    Notify.failure('The field cannot be empty. Enter a valid request');
-  }
+
   containerPagination.classList.add('hide');
 
+  console.log('searchInput :>> ', searchInput);
+
   if (/^\s*$/.test(searchInput.value)) {
+    console.log('searchInput.value :>> ', searchInput.value);
+    if (!searchInput.value.trim()) {
+      Notify.failure('The field cannot be empty. Enter a valid request');
+    }
     searchInput.value = '';
     return;
   }

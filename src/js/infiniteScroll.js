@@ -8,6 +8,7 @@ import { markUpGallery } from './films';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 import throttle from 'lodash.throttle';
+
 import { disableLoader, displayLoader } from './spinner';
 
 import getRefs from './refs';
@@ -57,6 +58,6 @@ export default function infiniteScroll(query, page, per_page = 20) {
       }
 
       triggered = false;
-    }, 300))
+    }, 300000))
   );
 }
