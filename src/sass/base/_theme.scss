@@ -13,6 +13,9 @@ body.dark-theme .film-gallery__title {
     color: white;
 }
 
+body.light-theme .theme-switch__icon{
+    color: rgb(98, 34, 2);
+}
 .toolbar {
     display: flex;
     justify-content: flex-end;
