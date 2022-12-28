@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://dmitrikll.github.io/MovieCtalogue",
+  "homepage": "https://dmitrikll.github.io/MovieCatalogue",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /MovieCtalogue/"
+    "build": "parcel build src/*.html --public-url /MovieCatalogue/"
   },
   "repository": {
     "type": "git",
