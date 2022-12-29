@@ -1,3 +1,25 @@
+# Командний проект
+
+- sasha1637
+- ElieSun
+- VikiBay
+- Vladimir-Plotnikov
+- annamelya2021
+- ruskava
+- dmitrikll
+- yuriiklimenko
+- sofidorosh
+- lumpy-the-moose
+- tomm-rodion
+- bogdanklymovskyy
+
+## посилання
+
+[API](https://www.themoviedb.org/) &
+[documentation](https://developers.themoviedb.org/3/getting-started/introduction)
+
+### ===================================================
+
 # Parcel template
 
 Этот проект был создан при помощи Parcel. Для знакомства и настройки
